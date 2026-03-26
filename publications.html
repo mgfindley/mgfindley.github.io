@@ -838,63 +838,183 @@
 </footer>
 
 <script>
-// Auto-generate expandable detail panels for all pub-entries
-document.querySelectorAll('.pub-entry').forEach(entry=>{
-  const content=entry.querySelector('.pub-content');
-  if(!content)return;
+// Supplement data: keyed by paper PDF filename (without pdfs/ prefix)
+// Each entry can have: appendix, replication, codebook (arrays of {label, file})
+const supplements = {
+  // 2023
+  'isq_2023_aidingwar.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/appendix_foreignaid_conflict_5dec2020_mgf.pdf'}]
+  },
+  // 2022
+  'natural-resources-conflict_web.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/natural-resources-conflict_appendix.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/dfhsw_grd_public_v1.zip'}],
+    codebook: [{label:'Codebook', file:'pdfs/grd_codebook.pdf'}]
+  },
+  // 2018
+  'prq_2018_immigrant-prejudice_south-africa.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/prq_appendix.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/rereplicationfilesforprqpaper.zip'}]
+  },
+  // 2017
+  'fhmn-io-firstview.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/fhmn-io-appendix.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/fhmn-io-replication.zip'}]
+  },
+  'rio_2017-multi-bilat-uganda-aid.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/foreign_aid_provision_mlbl_appendix_final_21feb2017.pdf'}]
+  },
+  // 2016
+  'jpr_2016_downstream-effects-fragmentation.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/jpr-web-appendix.pdf'}]
+  },
+  // 2015
+  'jop_2015_spoilers-terror.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/spoilers_appendix_jop_final.pdf'}]
+  },
+  'ajps_2015_causes-noncompliance.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/appendix.causes_of_non-compliance.final.29apr2014.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data.zip'}]
+  },
+  // 2014
+  'jcr_2012_ethnicity-identifiability.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/identifiability_sa_appendix_11july2012.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_jcr-2013-ei.zip'}]
+  },
+  // 2013
+  'jcr_2012_bargaining-civil-war.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/bargaining-war-resolution_appendix_final-accepted-version.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_jcr-2013.zip'}]
+  },
+  'ii_2013_refugees-terrorism.pdf': {
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_ii-2013.zip'}]
+  },
+  'io_2013_field-experiments.pdf': {
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_io-2013.zip'}]
+  },
+  // 2012
+  'jop_2011_rivalry-terror.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/gamesrivalsplay_appendix_final-copy.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_jop-2012.zip'}]
+  },
+  'published-article.pdf': {
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_tpv-2012.zip'}]
+  },
+  'pop_2012_terror-civil-war.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/civil-war_terror_appendix_final-accepted-version.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_pop-2012.zip'}]
+  },
+  // 2011
+  'ajps_2011_aidshocks.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/supporting-information_17sep2010.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/ajps_replication_data.zip'}]
+  },
+  'jpr_2011_ar-rivalry.pdf': {
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_jpr-2011.zip'}]
+  },
+  'pubchoice_2011_aid-terror.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/online_appendix_young_findley_pc.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_pubchoice_2011.zip'}]
+  },
+  'isq_2011_cred-commit-terror.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/findley_young_isq_appendix.pdf'}],
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_isq.zip'}]
+  },
+  // 2006
+  'jop_2006_intervention-war.pdf': {
+    appendix: [{label:'Web Appendix', file:'pdfs/findley_teo_webappendix.pdf'}]
+  }
+};
+
+// Helper: extract PDF filename from an entry's existing link
+function getPdfKey(entry) {
+  const link = entry.querySelector('.pub-links a[href*="pdfs/"]');
+  if (!link) return null;
+  const href = link.getAttribute('href');
+  return href.replace('pdfs/','');
+}
+
+// Build expandable panels for all pub-entries
+document.querySelectorAll('.pub-entry').forEach(entry => {
+  const content = entry.querySelector('.pub-content');
+  if (!content) return;
 
   // Add chevron icon
-  const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  const icon = document.createElementNS('http://www.w3.org/2000/svg','svg');
   icon.setAttribute('class','expand-icon');
   icon.setAttribute('viewBox','0 0 24 24');
   icon.setAttribute('fill','none');
   icon.setAttribute('stroke','currentColor');
   icon.setAttribute('stroke-width','2');
-  icon.innerHTML='<polyline points="6 9 12 15 18 9"/>';
+  icon.innerHTML = '<polyline points="6 9 12 15 18 9"/>';
   entry.appendChild(icon);
 
   // Build detail panel
-  const detail=document.createElement('div');
-  detail.className='pub-detail';
+  const detail = document.createElement('div');
+  detail.className = 'pub-detail';
 
   // Abstract placeholder
-  const abs=document.createElement('div');
-  abs.className='pub-abstract-placeholder';
-  abs.textContent='Abstract to be added.';
+  const abs = document.createElement('div');
+  abs.className = 'pub-abstract-placeholder';
+  abs.textContent = 'Abstract to be added.';
   detail.appendChild(abs);
 
   // Supplement buttons
-  const supps=document.createElement('div');
-  supps.className='pub-supplements';
+  const supps = document.createElement('div');
+  supps.className = 'pub-supplements';
 
-  // Check if there's already a PDF link
-  const existingPdf=content.querySelector('.pub-links a[href$=".pdf"]');
-  if(existingPdf){
-    const pdfBtn=document.createElement('a');
-    pdfBtn.href=existingPdf.href;
-    pdfBtn.textContent='PDF';
+  // PDF button
+  const existingPdf = content.querySelector('.pub-links a[href$=".pdf"]');
+  if (existingPdf) {
+    const pdfBtn = document.createElement('a');
+    pdfBtn.href = existingPdf.href;
+    pdfBtn.target = '_blank';
+    pdfBtn.textContent = 'PDF';
     supps.appendChild(pdfBtn);
-  } else {
-    const pdfTba=document.createElement('span');
-    pdfTba.className='tba';
-    pdfTba.textContent='PDF TBA';
-    supps.appendChild(pdfTba);
   }
 
-  // Placeholder buttons
-  ['Appendix','Replication Data','Pre-Analysis Plan','Publisher'].forEach(label=>{
-    const btn=document.createElement('span');
-    btn.className='tba';
-    btn.textContent=label+' TBA';
-    supps.appendChild(btn);
-  });
+  // Look up supplements for this entry
+  const pdfKey = getPdfKey(entry);
+  const data = pdfKey ? supplements[pdfKey] : null;
+
+  if (data) {
+    // Appendix buttons
+    if (data.appendix) {
+      data.appendix.forEach(a => {
+        const btn = document.createElement('a');
+        btn.href = a.file;
+        btn.target = '_blank';
+        btn.textContent = a.label;
+        supps.appendChild(btn);
+      });
+    }
+    // Replication buttons
+    if (data.replication) {
+      data.replication.forEach(r => {
+        const btn = document.createElement('a');
+        btn.href = r.file;
+        btn.textContent = r.label;
+        supps.appendChild(btn);
+      });
+    }
+    // Codebook buttons
+    if (data.codebook) {
+      data.codebook.forEach(c => {
+        const btn = document.createElement('a');
+        btn.href = c.file;
+        btn.target = '_blank';
+        btn.textContent = c.label;
+        supps.appendChild(btn);
+      });
+    }
+  }
 
   detail.appendChild(supps);
   content.appendChild(detail);
 
   // Click handler
-  entry.addEventListener('click',function(e){
-    if(e.target.tagName==='A')return;
+  entry.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') return;
     this.classList.toggle('expanded');
   });
 });
