@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Current Research — Mike Findley</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <style>
     .status-tag {
       display: inline-block;
@@ -20,12 +21,10 @@
     .status-tag.review { background: #EEF4E6; color: #4A7516; }
     .status-tag.progress { background: #FEF3E2; color: #A05E10; }
     .status-tag.data { background: #E8F0FE; color: #1A5FB4; }
-    .status-tag.forthcoming { background: #EEEDFE; color: #534AB7; }
     @media (prefers-color-scheme: dark) {
       .status-tag.review { background: #1E2E12; color: #97C459; }
       .status-tag.progress { background: #2D2112; color: #EF9F27; }
       .status-tag.data { background: #0C2040; color: #85B7EB; }
-      .status-tag.forthcoming { background: #26215C; color: #AFA9EC; }
     }
     .project-desc {
       font-size: 0.88rem;
@@ -34,40 +33,37 @@
       line-height: 1.55;
     }
     .book-card {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      padding: 24px;
+      padding: 20px 24px;
       border: 1px solid var(--border-light);
-      border-radius: 10px;
+      border-left: 4px solid var(--accent);
+      border-radius: 4px 10px 10px 4px;
       background: var(--white);
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
     .book-card .card-venue {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      margin-bottom: 4px;
     }
     .book-card .card-title {
       font-family: var(--font-serif);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       line-height: 1.3;
+      margin-bottom: 4px;
     }
     .book-card .card-authors {
       font-size: 0.85rem;
       color: var(--text-secondary);
     }
-    .book-card .project-desc {
-      margin-top: 8px;
-    }
+    .book-card .project-desc { margin-top: 8px; }
+    .domain-section { margin-top: 48px; }
     .domain-header {
       font-family: var(--font-serif);
       font-size: 1.15rem;
       font-weight: 600;
-      margin-top: 40px;
       margin-bottom: 16px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--border-light);
@@ -81,10 +77,8 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="site-name">Mike Findley</a>
@@ -101,216 +95,191 @@
     </ul>
   </div>
 </nav>
-
 <main class="wide">
   <h1>Current Research</h1>
   <p style="color:var(--text-secondary);margin-bottom:40px;">
-    Books in progress, active projects, and works in progress. For published work, see <a href="publications.html">Publications</a>.
+    Books in progress and active projects, organized by research domain. For published work, see <a href="publications.html">Publications</a>.
     For an interactive map of my full research portfolio, see the <a href="#map">Research Map</a> below.
   </p>
 
-  <!-- ════════════════ BOOKS ════════════════ -->
-  <div class="section-title">Books</div>
-
-  <div class="book-card">
-    <div class="card-venue">Cambridge University Press · Submitted 2026</div>
-    <div class="card-title">External Validity for Social Inquiry <span class="status-tag review">Under Review</span></div>
-    <div class="card-authors">w/ Michael Denly and Kyosuke Kikuta</div>
-    <div class="project-desc">A comprehensive framework for assessing and improving external validity in empirical social science, introducing the M-STOUT dimensions and a three-part structure of Model Utility, Scope Plausibility, and Specification Credibility.</div>
-  </div>
-
-  <div class="book-card">
-    <div class="card-venue">Oxford University Press · In Progress</div>
-    <div class="card-title">Aid in Conflict <span class="status-tag progress">In Progress</span></div>
-    <div class="card-authors">w/ Susanna Campbell and Haley Swedlund</div>
-    <div class="project-desc">A book-length treatment of how foreign aid interacts with violent armed conflict, synthesizing evidence from quantitative analysis, field experiments, and case studies across conflict-affected countries.</div>
-  </div>
-
-  <div class="book-card">
-    <div class="card-venue">Cambridge University Press · In Progress</div>
-    <div class="card-title">Wrong Is Right: How Experts Can Learn Better from Error <span class="status-tag progress">In Progress</span></div>
-    <div class="card-authors">w/ Daniel L. Nielson</div>
-    <div class="project-desc">An investigation of how experts across domains systematically fail to learn from their mistakes, and a framework for improving expert judgment through structured error analysis.</div>
-  </div>
-
-  <div class="book-card">
-    <div class="card-venue">In Progress</div>
-    <div class="card-title">Banking Bad: How Criminals Hack Global Finance <span class="status-tag progress">In Progress</span></div>
-    <div class="card-authors">w/ Daniel L. Nielson and J.C. Sharman</div>
-    <div class="project-desc">Building on the Banking Bad field experiment (AJPS 2025) and the sanctions study (Nature Human Behaviour 2026), a book-length account of how illicit actors exploit the global financial system and what can be done about it.</div>
-  </div>
-
-  <!-- ════════════════ ACTIVE PROJECTS ════════════════ -->
-  <div class="section-title" style="margin-top:56px;">Active Projects</div>
-
   <!-- Political Violence -->
-  <div class="domain-header"><span class="domain-dot" style="background:#D85A30;"></span>Political Violence</div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#D85A30;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Rebel Sophistication in Aid Targeting: Insights from LRA Inner Circles <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Trey Billing, David Backer, and Jiseon Chang</div>
-      <div class="project-desc">Uses rare access to former LRA combatants to study how rebel groups strategically target foreign aid resources.</div>
+  <div class="domain-section">
+    <div class="domain-header"><span class="domain-dot" style="background:#D85A30;"></span>Political Violence</div>
+    <div class="book-card" style="border-left-color:#D85A30;">
+      <div class="card-venue" style="color:#D85A30;">Oxford University Press · In Progress</div>
+      <div class="card-title">Aid in Conflict <span class="status-tag progress">In Progress</span></div>
+      <div class="card-authors">w/ Susanna Campbell and Haley Swedlund</div>
+      <div class="project-desc">A book-length treatment of how foreign aid interacts with violent armed conflict, synthesizing evidence from quantitative analysis, field experiments, and case studies across conflict-affected countries.</div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#D85A30;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Leaders, Factions, and Political Violence: Evidence from China's Cultural Revolution <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Xin Nong</div>
-      <div class="project-desc">Examines how leadership dynamics and factional competition drove patterns of political violence during the Cultural Revolution.</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#D85A30;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Rebel Sophistication in Aid Targeting: Insights from LRA Inner Circles <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Trey Billing, David Backer, and Jiseon Chang</div>
+        <div class="project-desc">Uses rare access to former LRA combatants to study how rebel groups strategically target foreign aid resources.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#D85A30;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Experimental Evidence on Ethnic Identification and Deception <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Habyarimana, Harris, Humphreys, Nielson, Posner, Weinstein</div>
-      <div class="project-desc">Multi-country experimental study (Uganda, South Africa, United States) on the ability to identify and deceive about ethnic identity.</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#D85A30;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Leaders, Factions, and Political Violence: Evidence from China's Cultural Revolution <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Xin Nong</div>
+        <div class="project-desc">Examines how leadership dynamics and factional competition drove patterns of political violence during the Cultural Revolution.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#D85A30;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Dynamic Violence Modeling: Integrating Events Data and Agent-Based Modeling <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Steve Shellman and Joseph K. Young</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#D85A30;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Experimental Evidence on Ethnic Identification and Deception <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Habyarimana, Harris, Humphreys, Nielson, Posner, Weinstein</div>
+        <div class="project-desc">Multi-country experimental study (Uganda, South Africa, United States) on the ability to identify and deceive about ethnic identity.</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#D85A30;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Dynamic Violence Modeling: Integrating Events Data and Agent-Based Modeling <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Steve Shellman and Joseph K. Young</div>
+      </div>
     </div>
   </div>
 
   <!-- Illicit Finance -->
-  <div class="domain-header"><span class="domain-dot" style="background:#1D9E75;"></span>Illicit Finance</div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#1D9E75;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Daniel L. Nielson and J.C. Sharman</div>
-      <div class="project-desc">A synthesis paper framing the Global Shell Games program through an external validity lens, examining generalizability and transportability across the coordinated field experiments.</div>
+  <div class="domain-section">
+    <div class="domain-header"><span class="domain-dot" style="background:#1D9E75;"></span>Illicit Finance</div>
+    <div class="book-card" style="border-left-color:#1D9E75;">
+      <div class="card-venue" style="color:#1D9E75;">In Progress</div>
+      <div class="card-title">Banking Bad: How Criminals Hack Global Finance <span class="status-tag progress">In Progress</span></div>
+      <div class="card-authors">w/ Daniel L. Nielson and J.C. Sharman</div>
+      <div class="project-desc">Building on the Banking Bad field experiment (AJPS 2025) and the sanctions study (Nature Human Behaviour 2026), a book-length account of how illicit actors exploit the global financial system and what can be done about it.</div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#1D9E75;"></div>
-    <div class="pub-content">
-      <div class="pub-title">IADB KYC/AML Multi-Country Audit <span class="status-tag data">Data Collection</span></div>
-      <div class="pub-meta">Inter-American Development Bank</div>
-      <div class="project-desc">A multi-country audit study examining compliance with Know Your Customer and Anti-Money Laundering regulations across financial institutions in Latin America and the Caribbean.</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#1D9E75;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Daniel L. Nielson and J.C. Sharman</div>
+        <div class="project-desc">A synthesis paper framing the Global Shell Games program through an external validity lens, examining generalizability and transportability across the coordinated field experiments.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#1D9E75;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Brent Allred, Daniel L. Nielson, and J.C. Sharman</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#1D9E75;"></div>
+      <div class="pub-content">
+        <div class="pub-title">IADB KYC/AML Multi-Country Audit <span class="status-tag data">Data Collection</span></div>
+        <div class="pub-meta">Inter-American Development Bank</div>
+        <div class="project-desc">A multi-country audit study examining compliance with Know Your Customer and Anti-Money Laundering regulations across financial institutions in Latin America and the Caribbean.</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#1D9E75;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Brent Allred, Daniel L. Nielson, and J.C. Sharman</div>
+      </div>
     </div>
   </div>
 
   <!-- International Development -->
-  <div class="domain-header"><span class="domain-dot" style="background:#378ADD;"></span>International Development</div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">USAID Shutdown Paper <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Smith and Kim</div>
-      <div class="project-desc">Examines the consequences of the USAID shutdown for development outcomes, aid delivery, and partner countries.</div>
+  <div class="domain-section">
+    <div class="domain-header"><span class="domain-dot" style="background:#378ADD;"></span>International Development</div>
+    <div class="book-card" style="border-left-color:#378ADD;">
+      <div class="card-venue" style="color:#378ADD;">Oxford University Press · In Progress</div>
+      <div class="card-title">Aid in Conflict <span class="status-tag progress">In Progress</span></div>
+      <div class="card-authors">w/ Susanna Campbell and Haley Swedlund</div>
+      <div class="project-desc">How foreign aid shapes and is shaped by violent armed conflict — spanning aid allocation, delivery, effectiveness, and unintended consequences across conflict-affected countries.</div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Short-Term Gains and Long-Term Losses in International Peacebuilding <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Danny Cowser and Renard Sexton</div>
-      <div class="project-desc">Uses the PeaDa dataset to examine whether peacebuilding interventions in Africa produce durable effects or whether short-term gains dissipate over time.</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">USAID Shutdown Paper <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Smith and Kim</div>
+        <div class="project-desc">Examines the consequences of the USAID shutdown for development outcomes, aid delivery, and partner countries.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Employing Ex-Combatants: A Resume Experiment in Colombia <span class="status-tag data">Data Collection</span></div>
-      <div class="pub-meta">w/ Oliver Kaplan</div>
-      <div class="project-desc">A resume audit experiment testing employer discrimination against former combatants in the Colombian labor market.</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Short-Term Gains and Long-Term Losses in International Peacebuilding <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Danny Cowser and Renard Sexton</div>
+        <div class="project-desc">Uses the PeaDa dataset to examine whether peacebuilding interventions in Africa produce durable effects or whether short-term gains dissipate over time.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">ZVTN Colombia DiD: Tax Compliance in Post-Conflict Zones <span class="status-tag progress">In Progress</span></div>
-      <div class="project-desc">Difference-in-differences analysis of tax compliance in Colombia's former conflict zones.</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Employing Ex-Combatants: A Resume Experiment in Colombia <span class="status-tag data">Data Collection</span></div>
+        <div class="pub-meta">w/ Oliver Kaplan</div>
+        <div class="project-desc">A resume audit experiment testing employer discrimination against former combatants in the Colombian labor market.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">When Technology Meets Necessity: Digital vs. Traditional Humanitarian Aid in Pakistan <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Miguel Fajardo-Steinhauser</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">ZVTN Colombia DiD: Tax Compliance in Post-Conflict Zones <span class="status-tag progress">In Progress</span></div>
+        <div class="project-desc">Difference-in-differences analysis of tax compliance in Colombia's former conflict zones.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Aversion to Learning in Development? A Global Field Experiment on Microfinance Institutions <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Matthew Brigham, William Matthias, Chase Petrey, and Daniel Nielson</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">When Technology Meets Necessity: Digital vs. Traditional Humanitarian Aid in Pakistan <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Miguel Fajardo-Steinhauser</div>
+      </div>
     </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#378ADD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">Ex-Combatant Demobilization and Support for Peace in Colombia <span class="status-tag progress">In Progress</span></div>
-      <div class="pub-meta">w/ Oliver Kaplan and Joseph K. Young</div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Aversion to Learning in Development? A Global Field Experiment on Microfinance Institutions <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Matthew Brigham, William Matthias, Chase Petrey, and Daniel Nielson</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Ex-Combatant Demobilization and Support for Peace in Colombia <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Oliver Kaplan and Joseph K. Young</div>
+      </div>
     </div>
   </div>
 
   <!-- Methods -->
-  <div class="domain-header"><span class="domain-dot" style="background:#7F77DD;"></span>Methods, Ethics & Scientific Standards</div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#7F77DD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">EVinference: R/Shiny Package for External Validity Assessment <span class="status-tag progress">In Development</span></div>
-      <div class="project-desc">An R package and interactive Shiny application implementing the M-STOUT framework for systematic external validity assessment.</div>
+  <div class="domain-section">
+    <div class="domain-header"><span class="domain-dot" style="background:#7F77DD;"></span>Methods, Ethics & Scientific Standards</div>
+    <div class="book-card" style="border-left-color:#7F77DD;">
+      <div class="card-venue" style="color:#7F77DD;">Cambridge University Press · Submitted 2026</div>
+      <div class="card-title">External Validity for Social Inquiry <span class="status-tag review">Under Review</span></div>
+      <div class="card-authors">w/ Michael Denly and Kyosuke Kikuta</div>
+      <div class="project-desc">A comprehensive framework for assessing and improving external validity in empirical social science, introducing the M-STOUT dimensions and a three-part structure of Model Utility, Scope Plausibility, and Specification Credibility.</div>
+    </div>
+    <div class="book-card" style="border-left-color:#7F77DD;">
+      <div class="card-venue" style="color:#7F77DD;">Cambridge University Press · In Progress</div>
+      <div class="card-title">Wrong Is Right: How Experts Can Learn Better from Error <span class="status-tag progress">In Progress</span></div>
+      <div class="card-authors">w/ Daniel L. Nielson</div>
+      <div class="project-desc">An investigation of how experts across domains systematically fail to learn from their mistakes, and a framework for improving expert judgment through structured error analysis.</div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">EVinference: R/Shiny Package for External Validity Assessment <span class="status-tag progress">In Development</span></div>
+        <div class="project-desc">An R package and interactive Shiny application implementing the M-STOUT framework for systematic external validity assessment.</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">causalcakes: R Package for INUS Causal Visualization <span class="status-tag progress">In Development</span></div>
+        <div class="project-desc">An R package for visualizing INUS (Insufficient but Necessary parts of Unnecessary but Sufficient conditions) causal structures.</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">PAP/SAP Templates for Impact Evaluation <span class="status-tag progress">In Progress</span></div>
+        <div class="project-desc">Comprehensive pre-analysis plan and statistical analysis plan templates for RCTs, quasi-experimental designs, uncontrolled studies, and audit studies.</div>
+      </div>
     </div>
   </div>
 
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#7F77DD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">causalcakes: R Package for INUS Causal Visualization <span class="status-tag progress">In Development</span></div>
-      <div class="project-desc">An R package for visualizing INUS (Insufficient but Necessary parts of Unnecessary but Sufficient conditions) causal structures.</div>
-    </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#7F77DD;"></div>
-    <div class="pub-content">
-      <div class="pub-title">PAP/SAP Templates for Impact Evaluation <span class="status-tag progress">In Progress</span></div>
-      <div class="project-desc">Comprehensive pre-analysis plan and statistical analysis plan templates for RCTs, quasi-experimental designs, uncontrolled studies, and audit studies.</div>
-    </div>
-  </div>
-
-  <!-- Creative Writing -->
-  <div class="domain-header"><span class="domain-dot" style="background:#D4537E;"></span>Creative Writing</div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge" style="background:#D4537E;"></div>
-    <div class="pub-content">
-      <div class="pub-title">The Humanity Trials <span class="status-tag progress">First Draft Complete</span></div>
-      <div class="project-desc">A dystopian novel (16 chapters + epilogue) exploring themes of human agency and institutional control.</div>
-    </div>
-  </div>
-
-  <!-- ════════════════ RESEARCH MAP ════════════════ -->
+  <!-- Research Map -->
   <div class="section-title" style="margin-top:56px;" id="map">Research Map</div>
   <div class="map-intro">
     <p>
@@ -321,13 +290,10 @@
   <div class="map-container">
     <iframe src="research-map-v0.3.html" title="Mike Findley Research Map"></iframe>
   </div>
-
 </main>
-
 <footer>
   <span>© 2026 Michael G. Findley</span>
   <span><a href="https://twitter.com/mgfindley">@mgfindley</a></span>
 </footer>
-
 </body>
 </html>
