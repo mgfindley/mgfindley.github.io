@@ -394,11 +394,11 @@ function render(){
       const tc=typeColors[d.otype||'research'];
       const isResearch=(d.otype||'research')==='research';
       const wip=isWip(d);
-      const dashArr=wip?'4 3':null;
+      const dashArr=wip?'8 5':null;
 
       if(isResearch){
         const circle=el.append('circle').attr('r',ds2.r)
-          .attr('fill',tc.fill).attr('stroke',tc.stroke).attr('stroke-width',wip?1.5:1)
+          .attr('fill',tc.fill).attr('stroke',tc.stroke).attr('stroke-width',wip?2:1)
           .attr('data-dot','1');
         if(dashArr)circle.attr('stroke-dasharray',dashArr);
       } else {
