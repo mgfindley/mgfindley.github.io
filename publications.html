@@ -6,6 +6,62 @@
   <title>Publications — Mike Findley</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    .pub-entry { cursor: pointer; transition: background 0.15s; border-radius: 8px; padding: 16px 16px; margin: 0 -16px; }
+    .pub-entry:hover { background: var(--bg-alt); }
+    .pub-entry .expand-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-left: auto;
+      margin-top: 2px;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+    .pub-entry.expanded .expand-icon { transform: rotate(180deg); }
+    .pub-detail {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+    }
+    .pub-entry.expanded .pub-detail { display: block; }
+    .pub-abstract {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .pub-abstract-placeholder {
+      font-size: 0.82rem;
+      color: var(--text-tertiary);
+      margin-bottom: 12px;
+    }
+    .pub-supplements {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pub-supplements a, .pub-supplements span {
+      font-size: 0.73rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .pub-supplements a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .pub-supplements .tba {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -781,5 +837,67 @@
   <span><a href="https://twitter.com/mgfindley">@mgfindley</a></span>
 </footer>
 
+<script>
+// Auto-generate expandable detail panels for all pub-entries
+document.querySelectorAll('.pub-entry').forEach(entry=>{
+  const content=entry.querySelector('.pub-content');
+  if(!content)return;
+
+  // Add chevron icon
+  const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  icon.setAttribute('class','expand-icon');
+  icon.setAttribute('viewBox','0 0 24 24');
+  icon.setAttribute('fill','none');
+  icon.setAttribute('stroke','currentColor');
+  icon.setAttribute('stroke-width','2');
+  icon.innerHTML='<polyline points="6 9 12 15 18 9"/>';
+  entry.appendChild(icon);
+
+  // Build detail panel
+  const detail=document.createElement('div');
+  detail.className='pub-detail';
+
+  // Abstract placeholder
+  const abs=document.createElement('div');
+  abs.className='pub-abstract-placeholder';
+  abs.textContent='Abstract to be added.';
+  detail.appendChild(abs);
+
+  // Supplement buttons
+  const supps=document.createElement('div');
+  supps.className='pub-supplements';
+
+  // Check if there's already a PDF link
+  const existingPdf=content.querySelector('.pub-links a[href$=".pdf"]');
+  if(existingPdf){
+    const pdfBtn=document.createElement('a');
+    pdfBtn.href=existingPdf.href;
+    pdfBtn.textContent='PDF';
+    supps.appendChild(pdfBtn);
+  } else {
+    const pdfTba=document.createElement('span');
+    pdfTba.className='tba';
+    pdfTba.textContent='PDF TBA';
+    supps.appendChild(pdfTba);
+  }
+
+  // Placeholder buttons
+  ['Appendix','Replication Data','Pre-Analysis Plan','Publisher'].forEach(label=>{
+    const btn=document.createElement('span');
+    btn.className='tba';
+    btn.textContent=label+' TBA';
+    supps.appendChild(btn);
+  });
+
+  detail.appendChild(supps);
+  content.appendChild(detail);
+
+  // Click handler
+  entry.addEventListener('click',function(e){
+    if(e.target.tagName==='A')return;
+    this.classList.toggle('expanded');
+  });
+});
+</script>
 </body>
 </html>
