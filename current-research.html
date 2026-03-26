@@ -76,6 +76,52 @@
       margin-right: 8px;
       vertical-align: middle;
     }
+    /* Theme navigation buttons */
+    .theme-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .theme-btn:hover {
+      border-color: var(--text-tertiary);
+      color: var(--text);
+      background: var(--bg-alt);
+    }
+    .theme-btn .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    /* Map container — explicit height */
+    .research-map-frame {
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-alt);
+    }
+    .research-map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -97,13 +143,20 @@
 </nav>
 <main class="wide">
   <h1>Current Research</h1>
-  <p style="color:var(--text-secondary);margin-bottom:40px;">
+  <p style="color:var(--text-secondary);margin-bottom:20px;">
     Books in progress and active projects, organized by research domain. For published work, see <a href="publications.html">Publications</a>.
-    For an interactive map of my full research portfolio, see the <a href="#map">Research Map</a> below.
   </p>
 
+  <div class="theme-nav">
+    <a href="#pv" class="theme-btn"><span class="dot" style="background:#D85A30;"></span>Political Violence</a>
+    <a href="#if" class="theme-btn"><span class="dot" style="background:#1D9E75;"></span>Illicit Finance</a>
+    <a href="#id" class="theme-btn"><span class="dot" style="background:#378ADD;"></span>Int'l Development</a>
+    <a href="#me" class="theme-btn"><span class="dot" style="background:#7F77DD;"></span>Methods & Ethics</a>
+    <a href="#map" class="theme-btn"><span class="dot" style="background:#888780;"></span>Research Map</a>
+  </div>
+
   <!-- Political Violence -->
-  <div class="domain-section">
+  <div class="domain-section" id="pv">
     <div class="domain-header"><span class="domain-dot" style="background:#D85A30;"></span>Political Violence</div>
     <div class="book-card" style="border-left-color:#D85A30;">
       <div class="card-venue" style="color:#D85A30;">Oxford University Press · In Progress</div>
@@ -117,6 +170,7 @@
         <div class="pub-title">Rebel Sophistication in Aid Targeting: Insights from LRA Inner Circles <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Trey Billing, David Backer, and Jiseon Chang</div>
         <div class="project-desc">Uses rare access to former LRA combatants to study how rebel groups strategically target foreign aid resources.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -125,6 +179,7 @@
         <div class="pub-title">Leaders, Factions, and Political Violence: Evidence from China's Cultural Revolution <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Xin Nong</div>
         <div class="project-desc">Examines how leadership dynamics and factional competition drove patterns of political violence during the Cultural Revolution.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -133,6 +188,7 @@
         <div class="pub-title">Experimental Evidence on Ethnic Identification and Deception <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Habyarimana, Harris, Humphreys, Nielson, Posner, Weinstein</div>
         <div class="project-desc">Multi-country experimental study (Uganda, South Africa, United States) on the ability to identify and deceive about ethnic identity.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -140,12 +196,13 @@
       <div class="pub-content">
         <div class="pub-title">Dynamic Violence Modeling: Integrating Events Data and Agent-Based Modeling <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Steve Shellman and Joseph K. Young</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
   </div>
 
   <!-- Illicit Finance -->
-  <div class="domain-section">
+  <div class="domain-section" id="if">
     <div class="domain-header"><span class="domain-dot" style="background:#1D9E75;"></span>Illicit Finance</div>
     <div class="book-card" style="border-left-color:#1D9E75;">
       <div class="card-venue" style="color:#1D9E75;">In Progress</div>
@@ -159,6 +216,7 @@
         <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Daniel L. Nielson and J.C. Sharman</div>
         <div class="project-desc">A synthesis paper framing the Global Shell Games program through an external validity lens, examining generalizability and transportability across the coordinated field experiments.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -167,6 +225,7 @@
         <div class="pub-title">IADB KYC/AML Multi-Country Audit <span class="status-tag data">Data Collection</span></div>
         <div class="pub-meta">Inter-American Development Bank</div>
         <div class="project-desc">A multi-country audit study examining compliance with Know Your Customer and Anti-Money Laundering regulations across financial institutions in Latin America and the Caribbean.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -174,12 +233,13 @@
       <div class="pub-content">
         <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Brent Allred, Daniel L. Nielson, and J.C. Sharman</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
   </div>
 
   <!-- International Development -->
-  <div class="domain-section">
+  <div class="domain-section" id="id">
     <div class="domain-header"><span class="domain-dot" style="background:#378ADD;"></span>International Development</div>
     <div class="book-card" style="border-left-color:#378ADD;">
       <div class="card-venue" style="color:#378ADD;">Oxford University Press · In Progress</div>
@@ -193,6 +253,7 @@
         <div class="pub-title">USAID Shutdown Paper <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Smith and Kim</div>
         <div class="project-desc">Examines the consequences of the USAID shutdown for development outcomes, aid delivery, and partner countries.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -201,6 +262,7 @@
         <div class="pub-title">Short-Term Gains and Long-Term Losses in International Peacebuilding <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Danny Cowser and Renard Sexton</div>
         <div class="project-desc">Uses the PeaDa dataset to examine whether peacebuilding interventions in Africa produce durable effects or whether short-term gains dissipate over time.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -209,6 +271,7 @@
         <div class="pub-title">Employing Ex-Combatants: A Resume Experiment in Colombia <span class="status-tag data">Data Collection</span></div>
         <div class="pub-meta">w/ Oliver Kaplan</div>
         <div class="project-desc">A resume audit experiment testing employer discrimination against former combatants in the Colombian labor market.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -216,6 +279,7 @@
       <div class="pub-content">
         <div class="pub-title">ZVTN Colombia DiD: Tax Compliance in Post-Conflict Zones <span class="status-tag progress">In Progress</span></div>
         <div class="project-desc">Difference-in-differences analysis of tax compliance in Colombia's former conflict zones.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -223,6 +287,7 @@
       <div class="pub-content">
         <div class="pub-title">When Technology Meets Necessity: Digital vs. Traditional Humanitarian Aid in Pakistan <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Miguel Fajardo-Steinhauser</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -230,6 +295,7 @@
       <div class="pub-content">
         <div class="pub-title">Aversion to Learning in Development? A Global Field Experiment on Microfinance Institutions <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Matthew Brigham, William Matthias, Chase Petrey, and Daniel Nielson</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -237,12 +303,13 @@
       <div class="pub-content">
         <div class="pub-title">Ex-Combatant Demobilization and Support for Peace in Colombia <span class="status-tag progress">In Progress</span></div>
         <div class="pub-meta">w/ Oliver Kaplan and Joseph K. Young</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
   </div>
 
   <!-- Methods -->
-  <div class="domain-section">
+  <div class="domain-section" id="me">
     <div class="domain-header"><span class="domain-dot" style="background:#7F77DD;"></span>Methods, Ethics & Scientific Standards</div>
     <div class="book-card" style="border-left-color:#7F77DD;">
       <div class="card-venue" style="color:#7F77DD;">Cambridge University Press · Submitted 2026</div>
@@ -261,6 +328,7 @@
       <div class="pub-content">
         <div class="pub-title">EVinference: R/Shiny Package for External Validity Assessment <span class="status-tag progress">In Development</span></div>
         <div class="project-desc">An R package and interactive Shiny application implementing the M-STOUT framework for systematic external validity assessment.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -268,6 +336,7 @@
       <div class="pub-content">
         <div class="pub-title">causalcakes: R Package for INUS Causal Visualization <span class="status-tag progress">In Development</span></div>
         <div class="project-desc">An R package for visualizing INUS (Insufficient but Necessary parts of Unnecessary but Sufficient conditions) causal structures.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
@@ -275,6 +344,7 @@
       <div class="pub-content">
         <div class="pub-title">PAP/SAP Templates for Impact Evaluation <span class="status-tag progress">In Progress</span></div>
         <div class="project-desc">Comprehensive pre-analysis plan and statistical analysis plan templates for RCTs, quasi-experimental designs, uncontrolled studies, and audit studies.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
   </div>
@@ -287,7 +357,7 @@
       Click any sub-topic cluster to expand. Hover for details. Curved arcs show cross-domain connections.
     </p>
   </div>
-  <div class="map-container">
+  <div class="research-map-frame">
     <iframe src="research-map-v0.3.html" title="Mike Findley Research Map"></iframe>
   </div>
 </main>
