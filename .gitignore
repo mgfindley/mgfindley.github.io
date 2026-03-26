@@ -1,0 +1,4 @@
+weebly_full-export/
+.DS_Store
+copy-supplements.sh
+patch-publications.py
