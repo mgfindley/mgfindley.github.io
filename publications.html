@@ -959,26 +959,14 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
   abs.textContent = 'Abstract to be added.';
   detail.appendChild(abs);
 
-  // Supplement buttons
-  const supps = document.createElement('div');
-  supps.className = 'pub-supplements';
-
-  // PDF button
-  const existingPdf = content.querySelector('.pub-links a[href$=".pdf"]');
-  if (existingPdf) {
-    const pdfBtn = document.createElement('a');
-    pdfBtn.href = existingPdf.href;
-    pdfBtn.target = '_blank';
-    pdfBtn.textContent = 'PDF';
-    supps.appendChild(pdfBtn);
-  }
-
-  // Look up supplements for this entry
+  // Supplement buttons (Appendix, Replication, PAP, Codebook only — PDF shown in collapsed view, not duplicated here)
   const pdfKey = getPdfKey(entry);
   const data = pdfKey ? supplements[pdfKey] : null;
 
   if (data) {
-    // Appendix buttons
+    const supps = document.createElement('div');
+    supps.className = 'pub-supplements';
+
     if (data.appendix) {
       data.appendix.forEach(a => {
         const btn = document.createElement('a');
@@ -988,7 +976,6 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
         supps.appendChild(btn);
       });
     }
-    // Replication buttons
     if (data.replication) {
       data.replication.forEach(r => {
         const btn = document.createElement('a');
@@ -997,7 +984,15 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
         supps.appendChild(btn);
       });
     }
-    // Codebook buttons
+    if (data.pap) {
+      data.pap.forEach(p => {
+        const btn = document.createElement('a');
+        btn.href = p.file;
+        btn.target = '_blank';
+        btn.textContent = p.label;
+        supps.appendChild(btn);
+      });
+    }
     if (data.codebook) {
       data.codebook.forEach(c => {
         const btn = document.createElement('a');
@@ -1007,9 +1002,9 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
         supps.appendChild(btn);
       });
     }
-  }
 
-  detail.appendChild(supps);
+    detail.appendChild(supps);
+  }
   content.appendChild(detail);
 
   // Click handler
