@@ -90,8 +90,8 @@
       border-color: var(--accent);
       color: #fff;
     }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
+    /* all sections visible */
+    
 
     /* Books & special issues compact layout */
     .books-grid {
@@ -147,14 +147,14 @@
   </p>
 
   <!-- Tab navigation -->
-  <div class="pub-tabs">
-    <a class="pub-tab active" data-tab="articles">Peer-Reviewed Articles</a>
-    <a class="pub-tab" data-tab="books">Books &amp; Special Issues</a>
-    <a class="pub-tab" data-tab="map">Research Map</a>
+  <div class="pub-tabs" style="margin-bottom:32px">
+    <a href="#articles" class="pub-tab">Peer-Reviewed Articles</a>
+    <a href="#books" class="pub-tab">Books &amp; Special Issues</a>
+    <a href="#map" class="pub-tab">Research Map</a>
   </div>
 
   <!-- TAB 1: BOOKS & SPECIAL ISSUES -->
-  <div class="tab-panel" id="tab-books">
+  <div id="books">
 
     <div class="books-grid">
       <div class="section-title" style="margin-bottom:-8px;">Books</div>
@@ -207,7 +207,7 @@
   </div>
 
   <!-- TAB 2: PEER-REVIEWED ARTICLES -->
-  <div class="tab-panel active" id="tab-articles">
+  <div id="articles">
 
   <div class="section-title">Peer-Reviewed Articles</div>
 
@@ -908,7 +908,7 @@
   </div><!-- end tab-articles -->
 
   <!-- TAB 3: RESEARCH MAP -->
-  <div class="tab-panel" id="tab-map">
+  <div id="map" style="margin-top:40px">
     <div class="section-title">Interactive Research Map</div>
     <p style="color:var(--text-secondary);margin-bottom:20px;">An interactive visualization of my research organized by domain, with cross-branch connections. Click and drag to explore; hover over nodes for details.</p>
     <div class="research-map-frame">
@@ -1165,19 +1165,7 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
   });
 });
 
-// Tab switching
-document.querySelectorAll('.pub-tab').forEach(tab => {
-  tab.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = this.dataset.tab;
-    // Update tab buttons
-    document.querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
-    // Update panels
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + target).classList.add('active');
-    // Scroll to top of tabs
-    document.querySelector('.pub-tabs').scrollIntoView({behavior:'smooth', block:'start'});
+
   });
 });
 </script>
