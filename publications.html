@@ -61,6 +61,64 @@
       opacity: 0.35;
       pointer-events: none;
     }
+
+    /* Tab navigation */
+    .pub-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .pub-tab {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text-secondary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .pub-tab:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .pub-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Books & special issues compact layout */
+    .books-grid {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .books-grid .pub-entry {
+      margin: 0;
+      padding: 12px 16px;
+    }
+
+    /* Research map */
+    .research-map-frame {
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-alt);
+    }
+    .research-map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -84,57 +142,74 @@
 
 <main>
   <h1>Publications</h1>
-  <p style="color:var(--text-secondary);margin-bottom:32px;">
+  <p style="color:var(--text-secondary);margin-bottom:20px;">
     For any papers, data, or code not posted here, please feel free to <a href="mailto:mikefindley@utexas.edu">email me</a>.
   </p>
 
-  <!-- BOOKS -->
-  <div class="section-title">Books</div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge book"></div>
-    <div class="pub-content">
-      <div class="pub-title">External Validity for Social Inquiry</div>
-      <div class="pub-meta">Findley, Michael G., Michael Denly, and Kyosuke Kikuta. <span class="venue">Cambridge University Press.</span> Under contract.</div>
-    </div>
+  <!-- Tab navigation -->
+  <div class="pub-tabs">
+    <a class="pub-tab active" data-tab="articles">Peer-Reviewed Articles</a>
+    <a class="pub-tab" data-tab="books">Books &amp; Special Issues</a>
+    <a class="pub-tab" data-tab="map">Research Map</a>
   </div>
 
-  <div class="pub-entry">
-    <div class="pub-type-badge book"></div>
-    <div class="pub-content">
-      <div class="pub-title">Global Shell Games: Experiments in Transnational Relations, Crime, and Terrorism</div>
-      <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. 2014. <span class="venue">Cambridge University Press.</span></div>
-      <div class="pub-links">
-        <a href="http://www.globalshellgames.com">Book site</a>
-        <a href="pdfs/oct2012-global-shell-games.media-summary.10oct12.pdf" target="_blank">Summary</a>
+  <!-- TAB 1: BOOKS & SPECIAL ISSUES -->
+  <div class="tab-panel" id="tab-books">
+
+    <div class="books-grid">
+      <div class="section-title" style="margin-bottom:-8px;">Books</div>
+
+      <div class="pub-entry">
+        <div class="pub-type-badge book"></div>
+        <div class="pub-content">
+          <div class="pub-title">External Validity for Social Inquiry</div>
+          <div class="pub-meta">Findley, Michael G., Michael Denly, and Kyosuke Kikuta. <span class="venue">Cambridge University Press.</span> Under contract.</div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-type-badge book"></div>
+        <div class="pub-content">
+          <div class="pub-title">Global Shell Games: Experiments in Transnational Relations, Crime, and Terrorism</div>
+          <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. 2014. <span class="venue">Cambridge University Press.</span></div>
+          <div class="pub-links">
+            <a href="http://www.globalshellgames.com">Book site</a>
+            <a href="pdfs/oct2012-global-shell-games.media-summary.10oct12.pdf" target="_blank">Summary</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:-8px;">Journal Special Issues</div>
+
+      <div class="pub-entry">
+        <div class="pub-type-badge book"></div>
+        <div class="pub-content">
+          <div class="pub-title">Research Transparency in the Social Sciences</div>
+          <div class="pub-meta">Eds. Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. 2016. <span class="venue">Comparative Political Studies</span> Special Issue.</div>
+          <div class="pub-links">
+            <a href="pdfs/cps__full-special-issue.pdf" target="_blank">PDF (full issue)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-type-badge book"></div>
+        <div class="pub-content">
+          <div class="pub-title">Expanding Our Understanding of Aid with a New Generation in Development Finance Information</div>
+          <div class="pub-meta">Eds. Hawkins, Darren G., Michael G. Findley, and Timmons J. Roberts. 2011. <span class="venue">World Development</span> Special Issue.</div>
+          <div class="pub-links">
+            <a href="pdfs/worlddev_2011_aiddata_0.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 
-  <!-- JOURNAL SPECIAL ISSUES -->
-  <div class="section-title" style="margin-top:40px;">Journal Special Issues</div>
+  <!-- TAB 2: PEER-REVIEWED ARTICLES -->
+  <div class="tab-panel active" id="tab-articles">
 
-  <div class="pub-entry">
-    <div class="pub-type-badge book"></div>
-    <div class="pub-content">
-      <div class="pub-title">Research Transparency in the Social Sciences</div>
-      <div class="pub-meta">Eds. Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. 2016. <span class="venue">Comparative Political Studies</span> Special Issue.</div>
-      <div class="pub-links">
-        <a href="pdfs/cps__full-special-issue.pdf" target="_blank">PDF (full issue)</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="pub-entry">
-    <div class="pub-type-badge book"></div>
-    <div class="pub-content">
-      <div class="pub-title">Expanding Our Understanding of Aid with a New Generation in Development Finance Information</div>
-      <div class="pub-meta">Eds. Hawkins, Darren G., Michael G. Findley, and Timmons J. Roberts. 2011. <span class="venue">World Development</span> Special Issue.</div>
-      <div class="pub-links">
-        <a href="pdfs/worlddev_2011_aiddata_0.pdf" target="_blank">PDF</a>
-      </div>
-    </div>
-  </div>
+  <div class="section-title">Peer-Reviewed Articles</div>
 
   <!-- 2026 -->
   <div class="pub-year">2026</div>
@@ -830,6 +905,17 @@
     </div>
   </div>
 
+  </div><!-- end tab-articles -->
+
+  <!-- TAB 3: RESEARCH MAP -->
+  <div class="tab-panel" id="tab-map">
+    <div class="section-title">Interactive Research Map</div>
+    <p style="color:var(--text-secondary);margin-bottom:20px;">An interactive visualization of my research organized by domain, with cross-branch connections. Click and drag to explore; hover over nodes for details.</p>
+    <div class="research-map-frame">
+      <iframe src="research-map-v0.7.html" title="Mike Findley Research Map"></iframe>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -1076,6 +1162,22 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
   entry.addEventListener('click', function(e) {
     if (e.target.tagName === 'A') return;
     this.classList.toggle('expanded');
+  });
+});
+
+// Tab switching
+document.querySelectorAll('.pub-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = this.dataset.tab;
+    // Update tab buttons
+    document.querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    // Update panels
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + target).classList.add('active');
+    // Scroll to top of tabs
+    document.querySelector('.pub-tabs').scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
 </script>
