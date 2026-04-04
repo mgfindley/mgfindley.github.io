@@ -3,3 +3,7 @@ weebly_full-export/
 copy-supplements.sh
 patch-publications.py
 backups/
+*.py
+*.xlsx
+ABSTRACT_FIX_REPORT.txt
+videos/
