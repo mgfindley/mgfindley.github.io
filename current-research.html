@@ -392,6 +392,14 @@ document.querySelectorAll('.book-card').forEach(card => {
     this.classList.toggle('expanded');
   });
 });
+
+// Book card click to expand (no chevron)
+document.querySelectorAll('.book-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') return;
+    this.classList.toggle('expanded');
+  });
+});
 </script>
 </body>
 </html>
