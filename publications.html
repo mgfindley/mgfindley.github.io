@@ -19,6 +19,25 @@
       transition: transform 0.2s;
     }
     .pub-entry.expanded .expand-icon { transform: rotate(180deg); }
+
+    /* Journal thumbnail badges */
+    .pub-thumb {
+      flex-shrink: 0;
+      width: 45px;
+      height: 60px;
+      border-radius: 4px;
+      object-fit: cover;
+      margin-top: 2px;
+      border: 1px solid var(--border-light);
+    }
+    .pub-badge-dot {
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 9px;
+      background: var(--accent);
+    }
     .pub-detail {
       display: none;
       margin-top: 12px;
@@ -166,7 +185,7 @@
       <div class="section-title" style="margin-bottom:-8px;">Books</div>
 
       <div class="pub-entry">
-        <div class="pub-type-badge book"></div>
+        <img class="pub-thumb" src="images/journals/cambridge.gif" alt="Cambridge University Press">
         <div class="pub-content">
           <div class="pub-title">External Validity for Social Inquiry</div>
           <div class="pub-meta">Findley, Michael G., Michael Denly, and Kyosuke Kikuta. <span class="venue">Cambridge University Press.</span> Under contract.</div>
@@ -174,7 +193,7 @@
       </div>
 
       <div class="pub-entry">
-        <div class="pub-type-badge book"></div>
+        <img class="pub-thumb" src="images/journals/cambridge.gif" alt="Cambridge University Press">
         <div class="pub-content">
           <div class="pub-title">Global Shell Games: Experiments in Transnational Relations, Crime, and Terrorism</div>
           <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. 2014. <span class="venue">Cambridge University Press.</span></div>
@@ -189,7 +208,7 @@
       <div class="section-title" style="margin-bottom:-8px;">Journal Special Issues</div>
 
       <div class="pub-entry">
-        <div class="pub-type-badge book"></div>
+        <img class="pub-thumb" src="images/journals/cps.gif" alt="Comparative Political Studies">
         <div class="pub-content">
           <div class="pub-title">Research Transparency in the Social Sciences</div>
           <div class="pub-meta">Eds. Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. 2016. <span class="venue">Comparative Political Studies</span> Special Issue.</div>
@@ -200,7 +219,7 @@
       </div>
 
       <div class="pub-entry">
-        <div class="pub-type-badge book"></div>
+        <img class="pub-thumb" src="images/journals/worlddev.gif" alt="World Development">
         <div class="pub-content">
           <div class="pub-title">Expanding Our Understanding of Aid with a New Generation in Development Finance Information</div>
           <div class="pub-meta">Eds. Hawkins, Darren G., Michael G. Findley, and Timmons J. Roberts. 2011. <span class="venue">World Development</span> Special Issue.</div>
@@ -222,7 +241,7 @@
   <div class="pub-year">2026</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/nhb.jpeg" alt="Nature Human Behaviour">
     <div class="pub-content">
       <div class="pub-title">A Natural Field Experiment on the Effectiveness of Economic Sanctions Before and After the Russian Invasion of Ukraine</div>
       <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. <span class="venue">Nature Human Behaviour.</span> Forthcoming.</div>
@@ -233,7 +252,7 @@
   <div class="pub-year">2025</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/mgmtsci.jpg" alt="Management Science">
     <div class="pub-content">
       <div class="pub-title">Can Digital Aid Deliver During Humanitarian Crises?</div>
       <div class="pub-meta">Callen, Michael, Miguel Fajardo-Steinhauser, Michael G. Findley, and Tarek Ghani. <span class="venue">Management Science.</span></div>
@@ -244,7 +263,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/pop.jpg" alt="Perspectives on Politics">
     <div class="pub-content">
       <div class="pub-title">Policing Socio-Geographic Boundaries and Inequality</div>
       <div class="pub-meta">Verrilli, Allison, Marcel Roman, Hannah Walker, Derek Epp, Amy Liu, and Michael G. Findley. <span class="venue">Perspectives on Politics.</span></div>
@@ -255,7 +274,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ajps.png" alt="American Journal of Political Science">
     <div class="pub-content">
       <div class="pub-title">Banking Bad: A Global Field Experiment on Risk, Reward, and Regulation</div>
       <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and Jason Sharman. <span class="venue">American Journal of Political Science.</span></div>
@@ -269,7 +288,7 @@
   <div class="pub-year">2024</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/pnas.png" alt="Proceedings of the National Academy of Sciences">
     <div class="pub-content">
       <div class="pub-title">Vulnerability in Research Ethics: A Call for Assessing Vulnerability and Implementing Protections</div>
       <div class="pub-meta">Findley, Michael G., Faten Ghosn, and Sara Lowe. <span class="venue">Proceedings of the National Academy of Sciences.</span></div>
@@ -280,7 +299,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isq.jpeg" alt="International Studies Quarterly">
     <div class="pub-content">
       <div class="pub-title">The Tyranny of Supply: Natural Resources and Rebel Territorial Control in Civil Conflicts</div>
       <div class="pub-meta">Aronson, Jacob, Michael G. Findley, Kyosuke Kikuta, and James Igoe Walsh. <span class="venue">International Studies Quarterly.</span></div>
@@ -294,7 +313,7 @@
   <div class="pub-year">2023</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isq.jpeg" alt="International Studies Quarterly">
     <div class="pub-content">
       <div class="pub-title">Aiding War: Foreign Aid and the Intensity of Violent Armed Conflict</div>
       <div class="pub-meta">Findley, Michael G., Daniel Strandow, Joseph K. Young, and Olgahan Cat. <span class="venue">International Studies Quarterly.</span></div>
@@ -305,7 +324,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ps.jpeg" alt="PS: Political Science and Politics">
     <div class="pub-content">
       <div class="pub-title">Normalizing Diversity in Merit Review Forms</div>
       <div class="pub-meta">Liu, Amy H., Michael G. Findley, et al. <span class="venue">PS: Political Science and Politics.</span></div>
@@ -319,7 +338,7 @@
   <div class="pub-year">2022</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jcr.jpeg" alt="Journal of Conflict Resolution">
     <div class="pub-content">
       <div class="pub-title">Do Natural Resources Really Cause Civil Conflict? Evidence from the New Global Resources Dataset</div>
       <div class="pub-meta">Denly, Michael, Michael G. Findley, Joelean Hall, Andrew Stravers, and James Igoe Walsh. <span class="venue">Journal of Conflict Resolution.</span></div>
@@ -333,7 +352,7 @@
   <div class="pub-year">2021</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/arps.jpg" alt="Annual Review of Political Science">
     <div class="pub-content">
       <div class="pub-title">External Validity</div>
       <div class="pub-meta">Findley, Michael G., Kyosuke Kikuta, and Michael Denly. <span class="venue">Annual Review of Political Science</span> 24(1): 365–393.</div>
@@ -347,7 +366,7 @@
   <div class="pub-year">2020</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ajps.png" alt="American Journal of Political Science">
     <div class="pub-content">
       <div class="pub-title">Electoral Institutions and Electoral Cycles in Investment Incentives</div>
       <div class="pub-meta">Jensen, Nathan, Michael G. Findley, and Daniel L. Nielson. <span class="venue">American Journal of Political Science</span> 64(4): 807–822.</div>
@@ -358,7 +377,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/stability.jpeg" alt="Stability: International Journal of Security and Development">
     <div class="pub-content">
       <div class="pub-title">The Swarm Principle: A Sub-national Analysis of Donor Coordination in Sub-Saharan Africa</div>
       <div class="pub-meta">Marineau, Josiah, and Michael G. Findley. <span class="venue">Stability: International Journal of Security and Development</span> 9(1): 9.</div>
@@ -369,7 +388,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/cmps.png" alt="Conflict Management and Peace Science">
     <div class="pub-content">
       <div class="pub-title">The Local Geography of Transnational Terrorism</div>
       <div class="pub-meta">Marineau, Josiah, Henry Pascoe, Alex Braithwaite, Michael G. Findley, and Joseph K. Young. <span class="venue">Conflict Management and Peace Science</span> 37(3): 350–381.</div>
@@ -383,7 +402,7 @@
   <div class="pub-year">2019</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ajps.png" alt="American Journal of Political Science">
     <div class="pub-content">
       <div class="pub-title">How Government Reactions to Violence Worsen Social Welfare: Evidence from Peru</div>
       <div class="pub-meta">Sexton, Renard, Rachel Wellhausen, and Michael G. Findley. <span class="venue">American Journal of Political Science</span> 63(2): 353–367.</div>
@@ -397,7 +416,7 @@
   <div class="pub-year">2018</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/arps.jpg" alt="Annual Review of Political Science">
     <div class="pub-content">
       <div class="pub-title">Does Foreign Aid Build Peace?</div>
       <div class="pub-meta">Findley, Michael G. <span class="venue">Annual Review of Political Science</span> 21(1): 359–384.</div>
@@ -408,7 +427,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/prq.jpg" alt="Political Research Quarterly">
     <div class="pub-content">
       <div class="pub-title">The Economic Roots of Anti-Immigrant Prejudice in the Global South: Evidence from South Africa</div>
       <div class="pub-meta">Harris, Adam S., Michael G. Findley, Daniel L. Nielson, and Kennard L. Noyes. <span class="venue">Political Research Quarterly</span> 71(1): 228–241.</div>
@@ -419,7 +438,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/tas.jpg" alt="The American Statistician">
     <div class="pub-content">
       <div class="pub-title">A Spatial Generalized Linear Mixed Model for Analyzing Efficiency of Foreign Aid Allocation</div>
       <div class="pub-meta">White, Philip, Candace Berrett, Shannon Neeley Tass, and Michael G. Findley. <span class="venue">The American Statistician</span> 73(4): 385–399.</div>
@@ -433,7 +452,7 @@
   <div class="pub-year">2017</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/io.jpg" alt="International Organization">
     <div class="pub-content">
       <div class="pub-title">Who Controls Foreign Aid? Elite versus Public Perceptions of Donor Influence in Aid-Dependent Uganda</div>
       <div class="pub-meta">Findley, Michael G., Adam S. Harris, Helen V. Milner, and Daniel L. Nielson. <span class="venue">International Organization</span> 71(4): 633–663.</div>
@@ -444,7 +463,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/io.jpg" alt="Review of International Organizations">
     <div class="pub-content">
       <div class="pub-title">The Choice among Aid Donors: The Effects of Multilateral vs. Bilateral Aid on Recipient Behavioral Support</div>
       <div class="pub-meta">Findley, Michael G., Helen V. Milner, and Daniel L. Nielson. <span class="venue">Review of International Organizations</span> 12(2): 307–334.</div>
@@ -455,7 +474,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isr.jpeg" alt="International Studies Review">
     <div class="pub-content">
       <div class="pub-title">An Ontology of Peace: Landscapes of Conflict and Cooperation</div>
       <div class="pub-meta">Campbell, Susanna P., Michael G. Findley, and Kyosuke Kikuta. <span class="venue">International Studies Review</span> 19(1): 92–113.</div>
@@ -466,7 +485,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jop.png" alt="Journal of Politics">
     <div class="pub-content">
       <div class="pub-title">External Validity in Parallel Global Field and Survey Experiments on Anonymous Incorporation</div>
       <div class="pub-meta">Findley, Michael G., Brock Laney, Daniel L. Nielson, and J.C. Sharman. <span class="venue">Journal of Politics</span> 79(3): 856–872.</div>
@@ -477,7 +496,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jibs.jpg" alt="Journal of International Business Studies">
     <div class="pub-content">
       <div class="pub-title">Anonymous Shell Companies: A Global Audit Study and Field Experiment in 176 Countries</div>
       <div class="pub-meta">Allred, Brent B., Michael G. Findley, Daniel L. Nielson, and J.C. Sharman. <span class="venue">Journal of International Business Studies</span> 48(5): 596–619.</div>
@@ -491,7 +510,7 @@
   <div class="pub-year">2016</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/cps.gif" alt="Comparative Political Studies">
     <div class="pub-content">
       <div class="pub-title">Can Results Free Review Reduce Publication Bias?</div>
       <div class="pub-meta">Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. <span class="venue">Comparative Political Studies</span> 49(3): 1667–1703.</div>
@@ -502,7 +521,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/tgis.jpg" alt="Transactions in GIS">
     <div class="pub-content">
       <div class="pub-title">A Hybrid Approach to Modeling Territorial Control in Violent Armed Conflicts</div>
       <div class="pub-meta">Tao, Ran, Daniel Strandow, Michael G. Findley, and Jean-Claude Thill. <span class="venue">Transactions in GIS</span> 20(3): 413–425.</div>
@@ -513,7 +532,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/io.jpg" alt="Review of International Organizations">
     <div class="pub-content">
       <div class="pub-title">Citizen Preferences and Public Goods: Comparing Preferences for Foreign Aid and Government Programs in Uganda</div>
       <div class="pub-meta">Milner, Helen V., Daniel L. Nielson, and Michael G. Findley. <span class="venue">Review of International Organizations</span> 11(2): 219–245.</div>
@@ -524,7 +543,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jpr.gif" alt="Journal of Peace Research">
     <div class="pub-content">
       <div class="pub-title">The Downstream Effects of Combatant Fragmentation on Civil War Recurrence</div>
       <div class="pub-meta">Rudloff, Peter J., and Michael G. Findley. <span class="venue">Journal of Peace Research</span> 53(1): 19–32.</div>
@@ -535,7 +554,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jcr.jpeg" alt="Journal of Conflict Resolution">
     <div class="pub-content">
       <div class="pub-title">Political Exclusion, Oil, and Ethnic Armed Conflict</div>
       <div class="pub-meta">Asal, Victor, Michael G. Findley, James A. Piazza, and James Igoe Walsh. <span class="venue">Journal of Conflict Resolution</span> 60(8): 1343–1367.</div>
@@ -546,7 +565,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/smj.gif" alt="Strategic Management Journal">
     <div class="pub-content">
       <div class="pub-title">Field Experiments in Strategy Research</div>
       <div class="pub-meta">Chatterji, Aaron, Michael G. Findley, Nathan M. Jensen, Stephan Meier, and Daniel L. Nielson. <span class="venue">Strategic Management Journal</span> 37(1): 116–132.</div>
@@ -560,7 +579,7 @@
   <div class="pub-year">2015</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jop.png" alt="Journal of Politics">
     <div class="pub-content">
       <div class="pub-title">Terrorism, Spoiling, and the Resolution of Civil Wars</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">Journal of Politics</span> 77(4): 1115–1128.</div>
@@ -571,7 +590,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ajps.png" alt="American Journal of Political Science">
     <div class="pub-content">
       <div class="pub-title">Causes of Non-Compliance with International Law: A Field Experiment on Anonymous Incorporation</div>
       <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. <span class="venue">American Journal of Political Science</span> 59(1): 146–161.</div>
@@ -582,7 +601,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/cmps.png" alt="Conflict Management and Peace Science">
     <div class="pub-content">
       <div class="pub-title">Lootable Resources and Third-Party Intervention into Civil Wars</div>
       <div class="pub-meta">Findley, Michael G., and Josiah F. Marineau. <span class="venue">Conflict Management and Peace Science</span> 32(5): 465–486.</div>
@@ -593,7 +612,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/io.jpg" alt="International Organizations as Orchestrators">
     <div class="pub-content">
       <div class="pub-title">Orchestrating the Fight Against Anonymous Incorporation: A Field Experiment</div>
       <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. In Abbott, Genschel, Snidal, and Zangl (Eds.) <span class="venue">International Organizations as Orchestrators.</span> Cambridge University Press. (Peer-reviewed chapter.)</div>
@@ -604,7 +623,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/cup.png" alt="Ethics and Experiments">
     <div class="pub-content">
       <div class="pub-title">Obligated to Deceive? Aliases, Confederates, and the Common Rule in International Field Experiments</div>
       <div class="pub-meta">Findley, Michael G., and Daniel L. Nielson. In Desposato (Ed.) <span class="venue">Ethics and Experiments.</span> Routledge. (Peer-reviewed chapter.)</div>
@@ -618,7 +637,7 @@
   <div class="pub-year">2014</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/upenn.jpg" alt="University of Pennsylvania Law Review">
     <div class="pub-content">
       <div class="pub-title">Funding Terror</div>
       <div class="pub-meta">Baradaran, Shima, Michael G. Findley, Daniel L. Nielson, and J.C. Sharman. <span class="venue">University of Pennsylvania Law Review</span> 162(3): 477–536.</div>
@@ -629,7 +648,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jcr.jpeg" alt="Journal of Conflict Resolution">
     <div class="pub-content">
       <div class="pub-title">Is Ethnicity Identifiable? Lessons From An Experiment in South Africa</div>
       <div class="pub-meta">Harris, Adam S., and Michael G. Findley. <span class="venue">Journal of Conflict Resolution</span> 58(1): 4–33.</div>
@@ -643,7 +662,7 @@
   <div class="pub-year">2013</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jcr.jpeg" alt="Journal of Conflict Resolution">
     <div class="pub-content">
       <div class="pub-title">Bargaining and the Interdependent Stages of Civil War Resolution</div>
       <div class="pub-meta">Findley, Michael G. <span class="venue">Journal of Conflict Resolution</span> 57(5): 905–932.</div>
@@ -654,7 +673,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/mlr.jpg" alt="Minnesota Law Review">
     <div class="pub-content">
       <div class="pub-title">Does International Law Matter?</div>
       <div class="pub-meta">Baradaran, Shima, Michael G. Findley, Daniel L. Nielson, and J.C. Sharman. <span class="venue">Minnesota Law Review</span> 97(3): 743–837.</div>
@@ -665,7 +684,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ii.jpg" alt="International Interactions">
     <div class="pub-content">
       <div class="pub-title">Radicalism of the Hopeless: Refugee Flows and Transnational Terrorism</div>
       <div class="pub-meta">Milton, Daniel L., Megan M. Spencer, and Michael G. Findley. <span class="venue">International Interactions</span> 39(5): 621–645.</div>
@@ -676,7 +695,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/io.jpg" alt="International Organization">
     <div class="pub-content">
       <div class="pub-title">Using Field Experiments in International Relations: A Randomized Study of Anonymous Incorporation</div>
       <div class="pub-meta">Findley, Michael G., Daniel L. Nielson, and J.C. Sharman. <span class="venue">International Organization</span> 67(4): 657–693.</div>
@@ -690,7 +709,7 @@
   <div class="pub-year">2012</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/bjps.jpg" alt="British Journal of Political Science">
     <div class="pub-content">
       <div class="pub-title">Combatant Fragmentation and the Dynamics of Civil War</div>
       <div class="pub-meta">Findley, Michael G., and Peter J. Rudloff. <span class="venue">British Journal of Political Science</span> 42(4): 879–901.</div>
@@ -701,7 +720,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jop.png" alt="Journal of Politics">
     <div class="pub-content">
       <div class="pub-title">Games Rivals Play: Terrorism in International Rivalries</div>
       <div class="pub-meta">Findley, Michael G., James Piazza, and Joseph K. Young. <span class="venue">Journal of Politics</span> 74(1): 235–248.</div>
@@ -712,7 +731,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/tpv.jpg" alt="Terrorism and Political Violence">
     <div class="pub-content">
       <div class="pub-title">More Combatant Groups, More Terror? Empirical Tests of an Outbidding Logic</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">Terrorism and Political Violence</span> 24(5): 706–721.</div>
@@ -723,7 +742,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/pop.jpg" alt="Perspectives on Politics">
     <div class="pub-content">
       <div class="pub-title">Terrorism and Civil War: A Spatial and Temporal Approach to a Conceptual Problem</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">Perspectives on Politics</span> 10(2): 285–305.</div>
@@ -734,7 +753,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isr.jpeg" alt="International Studies Review">
     <div class="pub-content">
       <div class="pub-title">Using Geography to Understand Terrorist Actors and Actions</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">International Studies Review</span> 14(3): 475–497.</div>
@@ -745,7 +764,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/cup.png" alt="Handbook of Research Methods in the Military">
     <div class="pub-content">
       <div class="pub-title">Computational Modeling to Study Conflicts and Terrorism</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">Handbook of Research Methods in the Military.</span> (Chapter.)</div>
@@ -759,7 +778,7 @@
   <div class="pub-year">2011</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/ajps.png" alt="American Journal of Political Science">
     <div class="pub-content">
       <div class="pub-title">Foreign Aid Shocks as a Cause of Violent Armed Conflict</div>
       <div class="pub-meta">Nielsen, Richard A., Michael G. Findley, Zachary S. Davis, Tara Candland, and Daniel L. Nielson. <span class="venue">American Journal of Political Science</span> 55(2): 219–232.</div>
@@ -770,7 +789,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jpr.gif" alt="Journal of Peace Research">
     <div class="pub-content">
       <div class="pub-title">Just Part of the Game? Arms Races, Rivalry, and War</div>
       <div class="pub-meta">Rider, Toby J., Michael G. Findley, and Paul F. Diehl. <span class="venue">Journal of Peace Research</span> 48(1): 85–100.</div>
@@ -781,7 +800,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/worlddev.gif" alt="World Development">
     <div class="pub-content">
       <div class="pub-title">The Localized Geography of Foreign Aid: A New Dataset and Application to Violent Armed Conflict</div>
       <div class="pub-meta">Findley, Michael G., Josh Powell, Daniel Strandow, and Jeff Tanner. <span class="venue">World Development</span> 39(11): 1995–2009.</div>
@@ -792,7 +811,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/worlddev.gif" alt="World Development">
     <div class="pub-content">
       <div class="pub-title">More Dollars than Sense: Refining Our Knowledge of Development Finance Using AidData</div>
       <div class="pub-meta">Tierney, Michael J., Daniel L. Nielson, Darren G. Hawkins, et al. <span class="venue">World Development</span> 39(11): 1891–1906.</div>
@@ -803,7 +822,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/pubchoice.jpg" alt="Public Choice">
     <div class="pub-content">
       <div class="pub-title">Can Peace Be Purchased? A Sectoral-Level Analysis of Aid's Influence on Transnational Terrorism</div>
       <div class="pub-meta">Young, Joseph K., and Michael G. Findley. <span class="venue">Public Choice</span> 149(3–4): 365–381.</div>
@@ -814,7 +833,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isr.jpeg" alt="International Studies Review">
     <div class="pub-content">
       <div class="pub-title">Promise and Pitfalls of Terrorism Research</div>
       <div class="pub-meta">Young, Joseph K., and Michael G. Findley. <span class="venue">International Studies Review</span> 13(3): 411–431.</div>
@@ -825,7 +844,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isq.jpeg" alt="International Studies Quarterly">
     <div class="pub-content">
       <div class="pub-title">Terrorism, Democracy, and Credible Commitments</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">International Studies Quarterly</span> 55(2): 357–378.</div>
@@ -836,7 +855,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <div class="pub-badge-dot"></div>
     <div class="pub-content">
       <div class="pub-title">The Weakest Link: Scholarship and Policy on Intrastate Conflict</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young.</div>
@@ -847,7 +866,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/cup.png" alt="Handbook of Global Economic Governance">
     <div class="pub-content">
       <div class="pub-title">Emerging Donors and the Changing Landscape of Bilateral Aid</div>
       <div class="pub-meta">Findley, Michael G., and Katherine Kitterman. In Moschella and Weaver (Eds.) <span class="venue">Handbook of Global Economic Governance.</span> (Chapter.)</div>
@@ -861,7 +880,7 @@
   <div class="pub-year">2009</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jop.png" alt="Journal of Politics">
     <div class="pub-content">
       <div class="pub-title">Rumor Dynamics in Ethnic Violence</div>
       <div class="pub-meta">Bhavnani, Ravi, Michael G. Findley, and James H. Kuklinski. <span class="venue">Journal of Politics</span> 71(3): 876–892.</div>
@@ -875,7 +894,7 @@
   <div class="pub-year">2008</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/complexity.png" alt="Complexity">
     <div class="pub-content">
       <div class="pub-title">Agents and Conflict: Adaptation and the Dynamics of War</div>
       <div class="pub-meta">Findley, Michael G. <span class="venue">Complexity</span> 14(1): 22–35.</div>
@@ -889,7 +908,7 @@
   <div class="pub-year">2007</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/isq.jpeg" alt="International Studies Quarterly">
     <div class="pub-content">
       <div class="pub-title">Accounting for the Unaccounted: Weak-Actor Social Structure in Asymmetric Wars</div>
       <div class="pub-meta">Findley, Michael G., and Scott Edwards. <span class="venue">International Studies Quarterly</span> 51(3): 583–606.</div>
@@ -900,7 +919,7 @@
   </div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/civilwars.jpg" alt="Civil Wars">
     <div class="pub-content">
       <div class="pub-title">Fighting Fire with Fire? How (Not) to Neutralize an Insurgency</div>
       <div class="pub-meta">Findley, Michael G., and Joseph K. Young. <span class="venue">Civil Wars</span> 9(4): 378–401.</div>
@@ -914,7 +933,7 @@
   <div class="pub-year">2006</div>
 
   <div class="pub-entry">
-    <div class="pub-type-badge"></div>
+    <img class="pub-thumb" src="images/journals/jop.png" alt="Journal of Politics">
     <div class="pub-content">
       <div class="pub-title">Rethinking Third-Party Interventions into Civil Wars: An Actor-Centric Approach</div>
       <div class="pub-meta">Findley, Michael G., and Tze Kwang Teo. <span class="venue">Journal of Politics</span> 68(4): 828–837.</div>
