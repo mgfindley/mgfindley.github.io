@@ -26,12 +26,7 @@
       .status-tag.progress { background: #2D2112; color: #EF9F27; }
       .status-tag.data { background: #0C2040; color: #85B7EB; }
     }
-    .project-desc {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      margin-top: 4px;
-      line-height: 1.55;
-    }
+    /* project-desc styles moved to accordion block */
     .book-card {
       padding: 20px 24px;
       border: 1px solid var(--border-light);
@@ -133,6 +128,33 @@
       height: 100%;
       border: none;
     }
+
+    /* Accordion expand/collapse for project entries */
+    .pub-entry { cursor: pointer; transition: background 0.15s; border-radius: 8px; padding: 16px 16px; margin: 0 -16px; }
+    .pub-entry:hover { background: var(--bg-alt); }
+    .pub-entry .expand-icon, .book-card .expand-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-left: auto;
+      margin-top: 2px;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+    .pub-entry.expanded .expand-icon, .book-card.expanded .expand-icon { transform: rotate(180deg); }
+    .project-desc {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .pub-entry.expanded .project-desc, .book-card.expanded .project-desc { display: block; }
+    .book-card { cursor: pointer; transition: background 0.15s; }
+    .book-card:hover { background: var(--bg-alt); border-radius: 8px; }
   </style>
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-nGEjgqmP2C1WJM6p2cm_g.js"></script>
@@ -336,5 +358,26 @@
 <footer>
   <span>© 2026 Michael G. Findley</span>
 </footer>
+
+<script>
+// Accordion for project entries and book cards
+document.querySelectorAll('.pub-entry, .book-card').forEach(entry => {
+  // Add chevron icon
+  const icon = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  icon.setAttribute('class','expand-icon');
+  icon.setAttribute('viewBox','0 0 24 24');
+  icon.setAttribute('fill','none');
+  icon.setAttribute('stroke','currentColor');
+  icon.setAttribute('stroke-width','2');
+  icon.innerHTML = '<polyline points="6 9 12 15 18 9"/>';
+  entry.appendChild(icon);
+
+  // Click handler
+  entry.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') return;
+    this.classList.toggle('expanded');
+  });
+});
+</script>
 </body>
 </html>
