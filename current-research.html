@@ -132,7 +132,7 @@
     /* Accordion expand/collapse for project entries */
     .pub-entry { cursor: pointer; transition: background 0.15s; border-radius: 8px; padding: 16px 16px; margin: 0 -16px; }
     .pub-entry:hover { background: var(--bg-alt); }
-    .pub-entry .expand-icon, .book-card .expand-icon {
+    .pub-entry .expand-icon {
       flex-shrink: 0;
       width: 20px;
       height: 20px;
@@ -141,7 +141,7 @@
       color: var(--text-tertiary);
       transition: transform 0.2s;
     }
-    .pub-entry.expanded .expand-icon, .book-card.expanded .expand-icon { transform: rotate(180deg); }
+    .pub-entry.expanded .expand-icon { transform: rotate(180deg); }
     .project-desc {
       display: none;
       margin-top: 12px;
@@ -152,7 +152,7 @@
       line-height: 1.6;
       font-style: italic;
     }
-    .pub-entry.expanded .project-desc, .book-card.expanded .project-desc { display: block; }
+    .pub-entry.expanded .project-desc { display: block; }
     .book-card { cursor: pointer; transition: background 0.15s; }
     .book-card:hover { background: var(--bg-alt); border-radius: 8px; }
   </style>
@@ -367,7 +367,7 @@
 
 <script>
 // Accordion for project entries and book cards
-document.querySelectorAll('.pub-entry, .book-card').forEach(entry => {
+document.querySelectorAll('.pub-entry').forEach(entry => {
   // Add chevron icon
   const icon = document.createElementNS('http://www.w3.org/2000/svg','svg');
   icon.setAttribute('class','expand-icon');
@@ -380,6 +380,14 @@ document.querySelectorAll('.pub-entry, .book-card').forEach(entry => {
 
   // Click handler
   entry.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') return;
+    this.classList.toggle('expanded');
+  });
+});
+
+// Book card click to expand (no chevron)
+document.querySelectorAll('.book-card').forEach(card => {
+  card.addEventListener('click', function(e) {
     if (e.target.tagName === 'A') return;
     this.classList.toggle('expanded');
   });
