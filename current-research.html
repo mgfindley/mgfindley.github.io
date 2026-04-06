@@ -47,7 +47,7 @@
       color: var(--text-secondary);
       margin-bottom: 4px;
     }
-    .book-card .project-desc { margin-top: 8px; display: block; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; font-style: italic; }
+    .book-card .project-desc { margin-top: 8px; }
     .book-tag {
       display: inline-block;
       font-size: 0.68rem;
@@ -384,19 +384,10 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
   });
 });
 
-// Book card click to expand (no chevron)
+// Book card click to expand
 document.querySelectorAll('.book-card').forEach(card => {
-  card.addEventListener('click', function(e) {
-    if (e.target.tagName === 'A') return;
-    this.classList.toggle('expanded');
-  });
-});
-
-// Book card click to expand (no chevron)
-document.querySelectorAll('.book-card').forEach(card => {
-  card.addEventListener('click', function(e) {
-    if (e.target.tagName === 'A') return;
-    this.classList.toggle('expanded');
+  card.addEventListener('click', function() {
+    card.classList.toggle('expanded');
   });
 });
 </script>
