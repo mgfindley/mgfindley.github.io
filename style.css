@@ -242,11 +242,11 @@ a:hover { color: var(--accent-hover); }
 }
 
 .section-title {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
   color: var(--text-tertiary);
   margin-bottom: 20px;
   padding-bottom: 8px;
@@ -299,11 +299,11 @@ a:hover { color: var(--accent-hover); }
 /* ── Publications list ── */
 
 .pub-year {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--text-tertiary);
-  margin-top: 40px;
+  margin-top: 28px;
   margin-bottom: 16px;
 }
 
