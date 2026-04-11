@@ -12,6 +12,155 @@
     window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
     plausible.init()
   </script>
+  <style>
+    /* ── Tagline block ── */
+    .tagline-block {
+      margin: 32px 0 28px;
+    }
+    .tagline-block .tagline-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .tagline-block .tagline-questions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tagline-block .tq {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 24px;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    /* ── Book cards (large) ── */
+    .books-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 680px) {
+      .books-featured { grid-template-columns: 1fr; }
+      .tagline-block .tq { white-space: normal; }
+    }
+    .book-card-lg {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-light);
+      border-top: 4px solid var(--accent);
+      border-radius: 4px 4px 10px 10px;
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.18s, transform 0.18s;
+      overflow: hidden;
+    }
+    .book-card-lg:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      transform: translateY(-2px);
+    }
+    .book-card-lg .bk-cover {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: var(--bg-alt);
+      display: block;
+    }
+    .book-card-lg .bk-cover-placeholder {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--bg-alt) 0%, var(--border-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .book-card-lg .bk-cover-placeholder svg { opacity: 0.18; }
+    .book-card-lg .bk-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .book-card-lg .bk-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .book-card-lg .bk-title {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .book-card-lg .bk-authors {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+    .book-card-lg .bk-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 14px;
+    }
+    .book-card-lg .bk-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ── Recent articles (compact row) ── */
+    .recent-articles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 680px) { .recent-articles { grid-template-columns: 1fr; } }
+    .ra-card {
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      display: block;
+    }
+    .ra-card:hover { background: var(--bg-alt); }
+    .ra-card .ra-venue {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .ra-card .ra-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .ra-card .ra-authors {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+  </style>
 </head>
 <body>
 
@@ -25,7 +174,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="current-research.html">Current Research</a></li>
-          <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
       <li><a href="policy.html">Policy</a></li>
       <li><a href="bio.html">Bio/CV</a></li>
     </ul>
@@ -33,8 +182,9 @@
 </nav>
 
 <main>
+
+  <!-- ── HERO ── -->
   <div class="hero">
-    <!-- Replace src with your actual headshot -->
     <img class="hero-photo" src="findley-headshot.jpg" alt="Mike Findley">
     <div class="hero-text">
       <h1>Michael G. Findley</h1>
@@ -42,75 +192,129 @@
         Frank C. Erwin, Jr. Centennial Professor of Government<br>
         The University of Texas at Austin
       </div>
-      <p>
-        I study political violence, international development, illicit finance, ethics, and methodology.
-        I publish in outlets including <em>Nature Human Behaviour</em>, <em>PNAS</em>,
-        <em>American Journal of Political Science</em>, <em>International Organization</em>,
-        <em>Management Science</em>, and <em>Cambridge University Press</em>.
+
+      <!-- Punchy tagline questions -->
+      <div class="tagline-block">
+        <div class="tagline-label">I study three big questions</div>
+        <div class="tagline-questions">
+          <span class="tq">Why does political violence occur?</span>
+          <span class="tq">Does foreign aid work?</span>
+          <span class="tq">When do findings generalize?</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.65;margin-bottom:8px;">
+        I publish in <em>Nature Human Behaviour</em>, <em>PNAS</em>, <em>AJPS</em>,
+        <em>International Organization</em>, <em>Management Science</em>, and Cambridge University Press.
         I conduct fieldwork in Colombia, Afghanistan, DRC, Sudan, South Sudan, South Africa, and Uganda.
       </p>
-      <p>
-        I am also Professor (by courtesy) at the McCombs School of Business and the LBJ School of Public Affairs,
-        co-director of Innovations for Peace and Development,
-        a <a href="https://www.strausscenter.org/">Strauss Center Distinguished Scholar</a>,
-        a member of <a href="https://egap.org/">EGAP</a>,
-        and co-founder and President of <a href="https://evaluasi.io/">Evaluasi</a>.
-        In 2025, I was a Fellow of the <a href="https://www.iast.fr/">Institute for Advanced Study</a>
-        at the <a href="https://www.tse-fr.eu/">Toulouse School of Economics</a>.
+      <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.65;">
+        Professor (by courtesy) at McCombs and LBJ · Co-director, <a href="https://ipd.utexas.edu/">IPD</a> ·
+        <a href="https://www.strausscenter.org/">Strauss Center Distinguished Scholar</a> ·
+        <a href="https://egap.org/">EGAP</a> member ·
+        President, <a href="https://evaluasi.io/">Evaluasi</a>
       </p>
-      <div class="hero-links">
+
+      <div class="hero-links" style="margin-top:18px;">
         <a href="publications.html">Publications</a>
         <a href="current-research.html">Current Research</a>
         <a href="https://scholar.google.com/citations?user=cHD_-eUAAAAJ&hl=en">Google Scholar</a>
-        <a href="https://www.linkedin.com/in/mike-findley-1bb4284/">LinkedIn</a>
+        <a href="bio.html">CV</a>
       </div>
     </div>
   </div>
 
+  <!-- ── RECENT ARTICLES ── -->
   <div class="section">
-    <div class="section-title">Recent Work</div>
-    <div class="featured-grid">
-      <a href="nhb-forthcoming.html" class="featured-card" style="text-decoration:none;color:inherit;">
-        <div class="card-venue">Nature Human Behaviour · 2026</div>
-        <div class="card-title">The Effectiveness of Economic Sanctions Before and After the Russian Invasion of Ukraine</div>
-        <div class="card-authors">w/ Nielson, Sharman</div>
+    <div class="section-title">Recent Articles</div>
+    <div class="recent-articles">
+      <a href="nhb-forthcoming.html" class="ra-card">
+        <div class="ra-venue">Nature Human Behaviour · 2026</div>
+        <div class="ra-title">The Effectiveness of Economic Sanctions Before and After the Russian Invasion of Ukraine</div>
+        <div class="ra-authors">w/ Nielson, Sharman</div>
       </a>
-      <a href="pdfs/ms_2025_can-digital-aid-deliver.pdf" target="_blank" class="featured-card" style="text-decoration:none;color:inherit;">
-        <div class="card-venue">Management Science · 2025</div>
-        <div class="card-title">Can Digital Aid Deliver During Humanitarian Crises?</div>
-        <div class="card-authors">w/ Callen, Fajardo-Steinhauser, Ghani</div>
+      <a href="pdfs/ms_2025_can-digital-aid-deliver.pdf" target="_blank" class="ra-card">
+        <div class="ra-venue">Management Science · 2025</div>
+        <div class="ra-title">Can Digital Aid Deliver During Humanitarian Crises?</div>
+        <div class="ra-authors">w/ Callen, Fajardo-Steinhauser, Ghani</div>
       </a>
-      <a href="pdfs/ajps_2025_banking-bad.pdf" target="_blank" class="featured-card" style="text-decoration:none;color:inherit;">
-        <div class="card-venue">AJPS · 2025</div>
-        <div class="card-title">Banking Bad: A Global Field Experiment on Risk, Reward, and Regulation</div>
-        <div class="card-authors">w/ Nielson, Sharman</div>
+      <a href="pdfs/ajps_2025_banking-bad.pdf" target="_blank" class="ra-card">
+        <div class="ra-venue">AJPS · 2025</div>
+        <div class="ra-title">Banking Bad: A Global Field Experiment on Risk, Reward, and Regulation</div>
+        <div class="ra-authors">w/ Nielson, Sharman</div>
       </a>
-      <a href="pdfs/pnas_2024_vulnerability.pdf" target="_blank" class="featured-card" style="text-decoration:none;color:inherit;">
-        <div class="card-venue">PNAS · 2024</div>
-        <div class="card-title">Vulnerability in Research Ethics: A Call for Assessing Vulnerability and Implementing Protections</div>
-        <div class="card-authors">w/ Ghosn, Lowe</div>
+      <a href="pdfs/pnas_2024_vulnerability.pdf" target="_blank" class="ra-card">
+        <div class="ra-venue">PNAS · 2024</div>
+        <div class="ra-title">Vulnerability in Research Ethics: A Call for Assessing Vulnerability and Implementing Protections</div>
+        <div class="ra-authors">w/ Ghosn, Lowe</div>
       </a>
     </div>
+    <p style="margin-top:16px;font-size:0.85rem;"><a href="publications.html">All publications →</a></p>
   </div>
 
+  <!-- ── BOOKS ── -->
   <div class="section">
     <div class="section-title">Books</div>
-    <div class="featured-grid">
-      <a href="https://externalvalidity.com/" class="featured-card" style="text-decoration:none;color:inherit;">
-        <div class="card-venue">CUP · Under Contract</div>
-        <div class="card-title">External Validity for Social Inquiry</div>
-        <div class="card-authors">w/ Denly, Kikuta</div>
-        <div class="card-venue" style="margin-top:4px;">externalvalidity.com →</div>
+    <div class="books-featured">
+
+      <!-- Row 1: GSG (left) | EV (right) -->
+      <a href="http://www.globalshellgames.com" class="book-card-lg">
+        <div class="bk-cover-placeholder">
+          <svg width="60" height="80" viewBox="0 0 60 80"><rect x="4" y="4" width="52" height="72" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="14" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="2"/><line x1="14" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="2"/><line x1="14" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="bk-body">
+          <div class="bk-badge">Cambridge University Press · 2014</div>
+          <div class="bk-title">Global Shell Games</div>
+          <div class="bk-authors">Findley, Nielson &amp; Sharman</div>
+          <div class="bk-desc">A coordinated field experiment across 182 countries exposing how easily shell companies shield illicit finance from regulators — research that shaped landmark U.S. and UK legislation.</div>
+          <div class="bk-link">globalshellgames.com →</div>
+        </div>
       </a>
-      <a href="http://www.globalshellgames.com" class="featured-card" style="text-decoration:none;color:inherit;">
-        <div class="card-venue">CUP · 2014</div>
-        <div class="card-title">Global Shell Games: Experiments in Transnational Relations, Crime, and Terrorism</div>
-        <div class="card-authors">w/ Nielson, Sharman</div>
-        <div class="card-venue" style="margin-top:4px;">globalshellgames.com →</div>
+
+      <a href="https://externalvalidity.com/" class="book-card-lg">
+        <div class="bk-cover-placeholder">
+          <svg width="60" height="80" viewBox="0 0 60 80"><rect x="4" y="4" width="52" height="72" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="14" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="2"/><line x1="14" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="2"/><line x1="14" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="bk-body">
+          <div class="bk-badge">Cambridge University Press · Under Contract</div>
+          <div class="bk-title">External Validity for Social Inquiry</div>
+          <div class="bk-authors">Findley, Denly &amp; Kikuta</div>
+          <div class="bk-desc">A new framework for assessing when and how research findings travel across contexts, populations, and settings — developed across a decade of methodological work.</div>
+          <div class="bk-link">externalvalidity.com →</div>
+        </div>
       </a>
+
+      <!-- Row 2: Aid in Conflict (left) | Wrong Is Right (right) -->
+      <a href="current-research.html" class="book-card-lg">
+        <div class="bk-cover-placeholder">
+          <svg width="60" height="80" viewBox="0 0 60 80"><rect x="4" y="4" width="52" height="72" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="14" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="2"/><line x1="14" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="2"/><line x1="14" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="bk-body">
+          <div class="bk-badge">Cambridge University Press · In preparation for submission</div>
+          <div class="bk-title">Aid in Conflict</div>
+          <div class="bk-authors">Findley, Campbell &amp; Swedlund</div>
+          <div class="bk-desc">Drawing on original data and field experiments across Sub-Saharan Africa, this book examines whether and how foreign aid shapes the onset, intensity, and resolution of violent conflict.</div>
+          <div class="bk-link">Learn more →</div>
+        </div>
+      </a>
+
+      <a href="current-research.html" class="book-card-lg">
+        <div class="bk-cover-placeholder">
+          <svg width="60" height="80" viewBox="0 0 60 80"><rect x="4" y="4" width="52" height="72" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="14" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="2"/><line x1="14" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="2"/><line x1="14" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="bk-body">
+          <div class="bk-badge">In progress</div>
+          <div class="bk-title">Wrong Is Right</div>
+          <div class="bk-authors">Findley &amp; Nielson</div>
+          <div class="bk-desc">On prediction precision and confirmation bias in empirical social science.</div>
+          <div class="bk-link">Learn more →</div>
+        </div>
+      </a>
+
     </div>
   </div>
 
+  <!-- ── EXPLORE ── -->
   <div class="section">
     <div class="section-title">Explore</div>
     <div class="featured-grid">
@@ -135,6 +339,7 @@
     </div>
   </div>
 
+  <!-- ── CONTACT ── -->
   <div class="section">
     <div class="section-title">Contact</div>
     <p style="font-size:0.9rem;color:var(--text-secondary);">
@@ -143,6 +348,7 @@
       <a href="mailto:mikefindley@utexas.edu">mikefindley@utexas.edu</a>
     </p>
   </div>
+
 </main>
 
 <footer>
