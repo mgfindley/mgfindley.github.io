@@ -41,28 +41,22 @@
       line-height: 1.3;
       white-space: nowrap;
     }
-    /* Foundational methodology row — visually subordinate to the four
-       substantive buckets above, matching the bubble-map architecture. */
+    /* Foundational methodology band — runs horizontally underneath the
+       four substantive pills, matching the bubble-map architecture. */
     .tagline-block .tagline-foundation {
       margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
+      display: block;
     }
     .tagline-block .tq-foundation {
-      font-size: 0.92rem;
-      padding: 6px 14px;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 0.95rem;
+      padding: 8px 18px;
       border-style: dashed;
-      opacity: 0.85;
-    }
-    .tagline-block .tagline-foundation-sub {
-      font-size: 0.78rem;
-      font-style: italic;
-      color: var(--text-secondary);
-    }
-    @media (max-width: 680px) {
-      .tagline-block .tagline-foundation-sub { display: none; }
+      opacity: 0.9;
+      white-space: nowrap;
     }
 
     /* ── Book cards (large) ── */
