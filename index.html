@@ -41,6 +41,29 @@
       line-height: 1.3;
       white-space: nowrap;
     }
+    /* Foundational methodology row — visually subordinate to the four
+       substantive buckets above, matching the bubble-map architecture. */
+    .tagline-block .tagline-foundation {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tagline-block .tq-foundation {
+      font-size: 0.92rem;
+      padding: 6px 14px;
+      border-style: dashed;
+      opacity: 0.85;
+    }
+    .tagline-block .tagline-foundation-sub {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    @media (max-width: 680px) {
+      .tagline-block .tagline-foundation-sub { display: none; }
+    }
 
     /* ── Book cards (large) ── */
     .books-featured {
@@ -193,20 +216,27 @@
         The University of Texas at Austin
       </div>
 
-      <!-- Punchy tagline questions -->
+      <!-- Conflict and Security research architecture -->
       <div class="tagline-block">
-        <div class="tagline-label">I study three big questions</div>
+        <div class="tagline-label">Research umbrella: Conflict and Security</div>
         <div class="tagline-questions">
-          <span class="tq">Why does political violence occur?</span>
-          <span class="tq">Does foreign aid work?</span>
-          <span class="tq">When do findings generalize?</span>
+          <span class="tq" title="Coercive instruments — sanctions, illicit-finance interdiction, beneficial-ownership transparency, terror financing">Pressure</span>
+          <span class="tq" title="Soft instruments — development aid, donor coordination, capacity building">Persuasion</span>
+          <span class="tq" title="Post-conflict, peacebuilding, ex-combatant reintegration, transitional governance">Stabilization</span>
+          <span class="tq" title="Positive analysis of conflict processes — civil war, terrorism, political violence">Dynamics</span>
+        </div>
+        <div class="tagline-foundation">
+          <span class="tq tq-foundation" title="Foundational band — external validity, transparency, pre-registration, research ethics">Methodology</span>
+          <span class="tagline-foundation-sub">Foundational — external validity, transparency, ethics</span>
         </div>
       </div>
 
       <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.65;margin-bottom:8px;">
         I publish in <em>Nature Human Behaviour</em>, <em>PNAS</em>, <em>AJPS</em>,
-        <em>International Organization</em>, <em>Management Science</em>, and Cambridge University Press.
-        I conduct fieldwork in Colombia, Afghanistan, DRC, Sudan, South Sudan, South Africa, and Uganda.
+        <em>International Organization</em>, <em>Management Science</em>,
+        <em>International Studies Quarterly</em>, <em>Journal of Conflict Resolution</em>,
+        and Cambridge University Press.
+        Fieldwork in Colombia, DRC, Sudan, South Sudan, Ethiopia, Tanzania, Uganda, Kenya, South Africa, Rwanda, the Bahamas, and elsewhere.
       </p>
       <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.65;">
         Professor (by courtesy) at McCombs and LBJ · Co-director, <a href="https://ipd.utexas.edu/">IPD</a> ·
