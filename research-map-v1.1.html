@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mike Findley — Security, Conflict, &amp; Peace Evidence Research Map</title>
-<!-- v1.1 (2026-05-14): clickable leaves (work-nodes with a url open the PDF in a new tab; pointer cursor + 'Click to open' tooltip line) and a Discipline line in the tooltip derived from venue. Builds on v1.0 student-coauthor badges. v0.9 and v1.0 are locked archives. -->
+<!-- v1.1 (2026-05-14): clickable leaves (work-nodes with a url open the PDF in a new tab; pointer cursor + 'Click to open' tooltip line) and a Discipline line in the tooltip derived from venue. Builds on v1.0 student-coauthor badges. v0.9 and v1.0 are locked archives. Fix (same day): links open via a synthetic anchor click — window.open was popup-blocked inside the site iframe; corrected 2 PDF filename cases; dropped the untracked SIFT syllabus link. -->
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: system-ui, -apple-system, sans-serif; background: #fafaf8; color: #2c2c2a; overflow: hidden; }
@@ -219,7 +219,7 @@ const data={id:'root',label:'Security, Conflict,\n& Peace Evidence',cat:'root',c
     {id:'dy-a-2',url:'pdfs/isq_2011_cred-commit-terror.pdf',short:'Democracy &\ncommitments',label:'Terrorism, Democracy, and Credible Commitments',cat:'dy',venue:'ISQ 2011',coauth:'Young',otype:'research'},
     {id:'dy-a-3',url:'pdfs/tpv_2012_outbidding.pdf',short:'Outbidding\nlogic',label:'More Combatant Groups, More Terror? An Outbidding Logic',cat:'dy',venue:'TPV 2012',coauth:'Young',otype:'research'},
     {id:'dy-a-4',url:'pdfs/isr_2012_forum-terrorism.pdf',short:'Geography of\nterrorism',label:'Using Geography to Understand Terrorist Actors and Actions',cat:'dy',venue:'ISR 2012',coauth:'Young',otype:'research'},
-    {id:'dy-a-5',url:'pdfs/II_2013_refugees-terrorism.pdf',short:'Refugees &\nterrorism',label:'Radicalism of the Hopeless: Refugee Flows and Transnational Terrorism',cat:'dy',venue:'Intl Interactions 2013',coauth:'Milton, Spencer',otype:'research',stu:'Spencer/UG'},
+    {id:'dy-a-5',url:'pdfs/ii_2013_refugees-terrorism.pdf',short:'Refugees &\nterrorism',label:'Radicalism of the Hopeless: Refugee Flows and Transnational Terrorism',cat:'dy',venue:'Intl Interactions 2013',coauth:'Milton, Spencer',otype:'research',stu:'Spencer/UG'},
     {id:'dy-a-6',url:'pdfs/cmps_2020_local-geography-terrorism.pdf',short:'Transnational\ngeography',label:'The Local Geography of Transnational Terrorist Attacks',cat:'dy',venue:'CMPS 2020',coauth:'Marineau, Pascoe, Braithwaite, Young',otype:'research',stu:'Marineau/Grad,Pascoe/Grad'},
     {id:'dy-a-7',url:'pdfs/isr_2011_terror-review.pdf',short:'Terrorism\nresearch review',label:'Promise and Pitfalls of Terrorism Research',cat:'dy',venue:'ISR 2011',coauth:'Young',otype:'research'},
     {id:'dy-a-8',url:'pdfs/oxford-hb-terrorism_2019_geographicapproaches.pdf',short:'Oxford Handbook\nterrorism geo',label:'Geographic Approaches in the Study of Terrorism (Oxford Handbook chapter)',cat:'dy',venue:'Oxford Handbook 2019',coauth:'Farrell, Young',otype:'research',stu:'Farrell/Grad'},
@@ -305,10 +305,10 @@ const data={id:'root',label:'Security, Conflict,\n& Peace Evidence',cat:'root',c
   ]},
   {id:'me-h',label:'Courses',cat:'me',children:[
     {id:'me-h-1',url:'pdfs/scope_and_methods_fall_2024_4nov24.pdf',short:'Scope &\nmethods (G)',label:'Scope and Methods in Political Science (Graduate)',cat:'me',venue:'Graduate, Fall 2024',otype:'teaching'},
-    {id:'me-h-2',url:'pdfs/Experimental-methods_Syllabus_2021.pdf',short:'Experimental\nmethods (G)',label:'Experimental Methods in Political Science (Graduate)',cat:'me',venue:'Graduate, Spring 2021',otype:'teaching'},
+    {id:'me-h-2',url:'pdfs/experimental-methods_syllabus_2021.pdf',short:'Experimental\nmethods (G)',label:'Experimental Methods in Political Science (Graduate)',cat:'me',venue:'Graduate, Spring 2021',otype:'teaching'},
     {id:'me-h-3',short:'Field experiments\nLBJ (G)',label:'Field Experiments (Graduate, LBJ School)',cat:'me',venue:'Graduate, LBJ Spring 2013',otype:'teaching'},
     {id:'me-h-4',short:'Impact eval\nLBJ (G)',label:'Experimental Methods for Impact Evaluation (Graduate, LBJ School)',cat:'me',venue:'Graduate, LBJ 2016-2017',otype:'teaching'},
-    {id:'me-h-5',url:'pdfs/SIFT%20Syllabus.pdf',short:'SIFT\nfieldwork (G)',label:'Seminar on Intensive Fieldwork Training / SIFT (Graduate)',cat:'me',venue:'Graduate, Spring 2020',otype:'teaching'},
+    {id:'me-h-5',short:'SIFT\nfieldwork (G)',label:'Seminar on Intensive Fieldwork Training / SIFT (Graduate)',cat:'me',venue:'Graduate, Spring 2020',otype:'teaching'},
     {id:'me-h-6',short:'Quant methods\n(UG)',label:'Quantitative Political Methodology (Undergraduate, BYU)',cat:'me',venue:'Undergraduate, BYU 2010-2012',otype:'teaching'},
     {id:'me-h-7',url:'pdfs/data_science_course_syllabus.pdf',short:'Data\nscience (UG)',label:'Data Science (Undergraduate)',cat:'me',venue:'Undergraduate, Summer 2021',otype:'teaching'},
     {id:'me-h-8',url:'pdfs/rip-syllabus-spring2016.pdf',short:'Research in\nintl politics (G)',label:'Research in International Politics (Graduate)',cat:'me',venue:'Graduate, Spring 2016',otype:'teaching'},
@@ -845,7 +845,7 @@ document.addEventListener('pointerup',function(e){
     let hit=false;
     if(isR){if(dx*dx+dy*dy<(ds2.r+6)*(ds2.r+6))hit=true;}
     else{if(Math.abs(dx)<ds2.w/2+6&&Math.abs(dy)<ds2.h/2+6)hit=true;}
-    if(hit){if(d.url)window.open(d.url,'_blank','noopener');return;}
+    if(hit){if(d.url){var a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();document.body.removeChild(a);}return;}
   }
 
   // background click — collapse
