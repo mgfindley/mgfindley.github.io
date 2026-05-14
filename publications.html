@@ -155,27 +155,20 @@
       padding: 2px 9px;
       border-radius: 11px;
       border: 1.5px solid;
+      background: transparent;
       white-space: nowrap;
       line-height: 1.55;
     }
-    .pub-bucket.primary   { color: #fff; }
-    .pub-bucket.secondary { background: transparent; }
+    /* First pill = primary area (solid border); the rest = also relevant
+       (subtle dashed border). No fills — the color carries the bucket. */
+    .pub-bucket.primary   { border-style: solid; }
+    .pub-bucket.secondary { border-style: dashed; opacity: 0.85; }
 
-    .pb-pressure            { border-color: #D85A30; }
-    .pb-pressure.primary    { background: #D85A30; }
-    .pb-pressure.secondary  { color: #D85A30; }
-    .pb-persuasion          { border-color: #1D9E75; }
-    .pb-persuasion.primary  { background: #1D9E75; }
-    .pb-persuasion.secondary{ color: #1D9E75; }
-    .pb-stabilization           { border-color: #378ADD; }
-    .pb-stabilization.primary   { background: #378ADD; }
-    .pb-stabilization.secondary { color: #378ADD; }
-    .pb-dynamics            { border-color: #7F77DD; }
-    .pb-dynamics.primary    { background: #7F77DD; }
-    .pb-dynamics.secondary  { color: #7F77DD; }
-    .pb-methodology            { border-color: #B07A1F; }
-    .pb-methodology.primary    { background: #B07A1F; }
-    .pb-methodology.secondary  { color: #B07A1F; }
+    .pb-pressure      { border-color: #D85A30; color: #D85A30; }
+    .pb-persuasion    { border-color: #1D9E75; color: #1D9E75; }
+    .pb-stabilization { border-color: #378ADD; color: #378ADD; }
+    .pb-dynamics      { border-color: #7F77DD; color: #7F77DD; }
+    .pb-methodology   { border-color: #B07A1F; color: #B07A1F; }
 
     /* Legend */
     .pub-bucket-legend {
@@ -232,13 +225,11 @@
 
   <!-- Conflict & Security bucket legend -->
   <div class="pub-bucket-legend">
-    <span>Each publication is tagged by <strong>Conflict &amp; Security</strong> area &mdash;</span>
     <span class="pbl-item"><span class="pbl-swatch" style="background:#D85A30"></span>Pressure</span>
     <span class="pbl-item"><span class="pbl-swatch" style="background:#1D9E75"></span>Persuasion</span>
     <span class="pbl-item"><span class="pbl-swatch" style="background:#378ADD"></span>Stabilization</span>
     <span class="pbl-item"><span class="pbl-swatch" style="background:#7F77DD"></span>Dynamics</span>
     <span class="pbl-item"><span class="pbl-swatch" style="background:#B07A1F"></span>Methodology</span>
-    <span class="pbl-note">(filled = primary area; outlined = also relevant)</span>
   </div>
 
   <!-- TAB 1: BOOKS & SPECIAL ISSUES -->
