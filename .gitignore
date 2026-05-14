@@ -7,3 +7,10 @@ backups/
 *.xlsx
 ABSTRACT_FIX_REPORT.txt
 videos/
+
+# ── added 2026-05-14: keep local backups / scratch out of the repo ──
+*.zip
+publications-backup-before-thumbnails.html
+images/to-identify/
+findley-website-transfer-guide.md
+findley-website-transfer-guide-v2.md
