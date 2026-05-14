@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mike Findley — Conflict and Security Research Map</title>
+<title>Mike Findley — Security, Conflict, &amp; Peace Evidence Research Map</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: system-ui, -apple-system, sans-serif; background: #fafaf8; color: #2c2c2a; overflow: hidden; }
@@ -89,7 +89,7 @@ const crossLinks = [
   {from:'dy-c-2', to:'dy-c-1', label:'From resources-and-onset to resources-and-territorial-control'},
 ];
 
-const data={id:'root',label:'Conflict and Security',cat:'root',children:[
+const data={id:'root',label:'Security, Conflict,\n& Peace Evidence',cat:'root',children:[
 
 {id:'pr',label:'Pressure',cat:'pr',children:[
   {id:'pr-a',label:'Anonymous\nIncorporation',cat:'pr',children:[
@@ -386,7 +386,7 @@ for(let i=0;i<domainCats.length;i++){
 let sim,hoveredId=null;
 
 function pillSize(d){
-  if(d.depth===0)return{w:230,h:60};
+  if(d.depth===0)return{w:225,h:70};
   const lines=d.label.split('\n');const ml=Math.max(...lines.map(l=>l.length));
   if(d.depth===1)return{w:Math.max(ml*11+44,170),h:lines.length*22+30};
   return{w:Math.max(ml*7.8+30,110),h:lines.length*16+22};
