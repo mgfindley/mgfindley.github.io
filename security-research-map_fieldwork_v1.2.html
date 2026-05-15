@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Findley — Global Field Research Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body {
+    font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    background: #fafaf8; color: #2c2c2a;
+    color-scheme: light;
+  }
+  #map { width: 100vw; height: 100vh; display: block; cursor: grab; }
+  #map:active { cursor: grabbing; }
+
+  /* Country fills — light theme only. */
+  .country    { fill: #ECE9E0; stroke: #C7C3B6; stroke-width: 0.5; transition: fill 0.18s; }
+  .country.t0 { fill: #C8DCE9; }
+  .country.t1 { fill: #A3C4DC; }
+  .country.t2 { fill: #7BA8C6; }
+  .country.t3 { fill: #4A7B9D; }
+  .country.t4 { fill: #285470; }
+  .country:hover { fill: #E0BD7F; }
+
+  /* City dots */
+  .city {
+    fill: #D85A30; stroke: #fff; stroke-width: 1.2;
+    opacity: 0.9; cursor: pointer;
+  }
+  .city:hover { fill: #FFCB47; stroke-width: 2; }
+
+  /* Evaluasi engagement rings, drawn at country centroids */
+  .evaluasi { fill: none; stroke: #B07A1F; stroke-width: 2.2; opacity: 0.88; pointer-events: none; }
+
+  .legend {
+    position: fixed; bottom: 14px; left: 16px;
+    display: flex; gap: 18px; font-size: 11px; opacity: 0.78; flex-wrap: wrap;
+    z-index: 10; max-width: 70vw; align-items: center;
+  }
+  .legend .l-item { display: flex; align-items: center; gap: 6px; }
+  .legend .l-swatch { width: 22px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.15); }
+  .legend .l-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .legend .l-ring-solid { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #B07A1F; box-sizing: border-box; }
+
+  .hint {
+    position: fixed; top: 14px; right: 16px;
+    font-size: 11px; opacity: 0.55; max-width: 280px; text-align: right; line-height: 1.55;
+    z-index: 10;
+  }
+
+  .title-banner {
+    position: fixed; top: 14px; left: 16px;
+    font-size: 12px; opacity: 0.78; max-width: 60vw; line-height: 1.5;
+    z-index: 10;
+  }
+  .title-banner .title {
+    font-weight: 600; letter-spacing: 0.03em; font-size: 13px;
+    text-transform: uppercase; opacity: 0.9;
+  }
+  .title-banner .sub { opacity: 0.75; }
+
+  #tt {
+    position: fixed; background: #fff;
+    border: 1px solid rgba(0,0,0,0.13); border-radius: 8px;
+    padding: 10px 14px; font-size: 12px; pointer-events: none;
+    z-index: 9999; max-width: 360px; line-height: 1.5;
+    display: none; box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  }
+  #tt .tt-title { font-weight: 600; margin-bottom: 4px; }
+  #tt .tt-sub   { color: #5f5e5a; font-size: 11px; margin-bottom: 4px; }
+  #tt .tt-body  { color: #888780; font-size: 11px; }
+  #tt .tt-flag  { color: #B07A1F; font-size: 10px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="title-banner">
+  <div class="title">Global Field Research Map</div>
+</div>
+<svg id="map"></svg>
+<div class="legend">
+  <div class="l-item"><span class="l-swatch" style="background:#7BA8C6"></span><span>Research countries</span></div>
+  <div class="l-item"><span class="l-dot" style="background:#D85A30"></span><span>Research cities</span></div>
+  <div class="l-item"><span class="l-ring-solid"></span><span>Evaluasi research countries</span></div>
+</div>
+<div class="hint">
+  Hover countries or city dots for details. Scroll to zoom. Drag the map to pan.
+</div>
+<div id="tt"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+'use strict';
+
+// =========================================================================
+// FIELDWORK DATA
+// Source: cv_main_13may2026.tex -> "Field Research and International
+// Experience" subsection.  Countries flagged as "deep" engagement when
+// the visit pattern is multi-year / multi-trip.  City coordinates are
+// approximate geographic centroids.
+// =========================================================================
+const fieldwork = [
+  { country: "Colombia", iso3: "COL", visitCount: 13,
+    cities: [
+      { name: "Bogota",       lat:  4.7110, lon: -74.0721 },
+      { name: "Medellin",     lat:  6.2476, lon: -75.5658 },
+      { name: "Cali",         lat:  3.4516, lon: -76.5320 },
+      { name: "Monteria",     lat:  8.7479, lon: -75.8814 },
+      { name: "Valencia",     lat:  8.2570, lon: -75.5430 },
+      { name: "Tierralta",    lat:  8.1745, lon: -76.0606 },
+      { name: "Planeta Rica", lat:  8.4123, lon: -75.5847 },
+      { name: "Coveñas",      lat:  9.4083, lon: -75.6900 },
+      { name: "Miranda",      lat:  3.2516, lon: -76.2249 },
+      { name: "Florida",      lat:  3.3231, lon: -76.2342 },
+      { name: "Icononzo",     lat:  4.1769, lon: -74.5333 },
+      { name: "Chaparral",    lat:  3.7244, lon: -75.4831 },
+      { name: "Zipacon",      lat:  4.7570, lon: -74.3811 }
+    ],
+    visits: "Nov 2014; Aug + Sep 2015; Mar + Jul 2016; May + Oct 2017; Jul 2018; May + Jul 2019; Jan 2020; Aug 2022; Apr 2026",
+    note: "Most repeated and deepest fieldwork site — Colombia USAID Regional Governance Activity + ex-combatants registered report w/ Kaplan" },
+
+  { country: "Uganda", iso3: "UGA", visitCount: 8,
+    cities: [
+      { name: "Kampala", lat:  0.3476, lon:  32.5825 },
+      { name: "Gulu",    lat:  2.7821, lon:  32.2999 }
+    ],
+    visits: "Jun 2010; Jan + May 2011; Jun-Jul 2012; Jun-Jul 2013; Jun 2015; May 2018; Jul 2019",
+    note: "Who Controls Foreign Aid? IO 2017 + Elite-Mass Support working paper context" },
+
+  { country: "Kenya", iso3: "KEN", visitCount: 6,
+    cities: [
+      { name: "Nairobi", lat: -1.2921, lon:  36.8219 }
+    ],
+    visits: "Dec 2010; Oct 2013; May 2015; Oct 2016; Jan 2017; Jul 2019",
+    note: "USAID Mission Kenya + UNDP M&E + Development Gateway workshops" },
+
+  { country: "Bahamas", iso3: "BHS", visitCount: 6,
+    cities: [
+      { name: "Nassau", lat: 25.0443, lon: -77.3504 }
+    ],
+    visits: "Jan 2020, 2022, 2023, 2024, 2025, 2026 (six annual visits)",
+    note: "Central Bank of the Bahamas advisory engagement" },
+
+  { country: "South Africa", iso3: "ZAF", visitCount: 4,
+    cities: [
+      { name: "Cape Town",     lat: -33.9249, lon:  18.4241 },
+      { name: "Johannesburg",  lat: -26.2041, lon:  28.0473 },
+      { name: "Durban",        lat: -29.8587, lon:  31.0218 },
+      { name: "East London",   lat: -33.0153, lon:  27.9116 }
+    ],
+    visits: "Nov 2008; Jul 2009; Apr 2010; Mar 2016",
+    note: "Is Ethnicity Identifiable? JCR 2014 + Economic Roots PRQ 2018 fieldwork" },
+
+  { country: "England (UK)", iso3: "GBR", visitCount: 5,
+    cities: [
+      { name: "Cambridge", lat: 52.2053, lon:   0.1218 },
+      { name: "Oxford",    lat: 51.7520, lon:  -1.2577 },
+      { name: "London",    lat: 51.5074, lon:  -0.1278 }
+    ],
+    visits: "Mar 2010 (Oxford); Dec 2015 (London); Apr 2017 (London); Apr 2018 (Cambridge); Nov 2019 (Cambridge, Oxford, London)",
+    note: "Cambridge POLIS + UCL + Oxford Nuffield/DPIR talk tour Nov 2019; BIT London engagement" },
+
+  { country: "Sweden", iso3: "SWE", visitCount: 3,
+    cities: [
+      { name: "Uppsala", lat: 59.8586, lon:  17.6389 }
+    ],
+    visits: "May 2010; Jun 2011; Oct 2013",
+    note: "Uppsala Department of Peace and Conflict Research + AidData workshop" },
+
+  { country: "Rwanda", iso3: "RWA", visitCount: 4,
+    cities: [
+      { name: "Kigali", lat: -1.9441, lon:  30.0619 }
+    ],
+    visits: "Jul 2012; Jul 2013; Jun 2015; Jan 2016",
+    note: "Multi-year Great Lakes region fieldwork" },
+
+  { country: "France", iso3: "FRA", visitCount: 2,
+    cities: [
+      { name: "Toulouse", lat: 43.6047, lon:   1.4442 },
+      { name: "Paris",    lat: 48.8566, lon:   2.3522 }
+    ],
+    visits: "Nov 2018; Apr-Jun 2025",
+    note: "IAST Toulouse residency" },
+
+  { country: "Morocco", iso3: "MAR", visitCount: 1,
+    cities: [
+      { name: "Rabat", lat: 34.0209, lon:  -6.8416 }
+    ],
+    visits: "May-Jun 2025",
+    note: "2025 sabbatical research visit" },
+
+  { country: "Ethiopia", iso3: "ETH", visitCount: 1,
+    cities: [
+      { name: "Addis Ababa", lat:  9.0320, lon:  38.7469 }
+    ],
+    visits: "Apr 2020",
+    note: "Field visit" },
+
+  { country: "Tanzania", iso3: "TZA", visitCount: 1,
+    cities: [
+      { name: "Dar es Salaam", lat: -6.7924, lon:  39.2083 },
+      { name: "Arusha",        lat: -3.3869, lon:  36.6829 }
+    ],
+    visits: "Jul 2019" },
+
+  { country: "Sudan", iso3: "SDN", visitCount: 1,
+    cities: [
+      { name: "Khartoum", lat: 15.5007, lon:  32.5599 }
+    ],
+    visits: "Jan 2016",
+    note: "Aid in Conflict book elite-interview field visit" },
+
+  { country: "South Sudan", iso3: "SSD", visitCount: 1,
+    cities: [
+      { name: "Juba", lat:  4.8517, lon:  31.5825 }
+    ],
+    visits: "Jan 2016",
+    note: "Aid in Conflict book — South Sudan is the corpus's lone GPC-relevant anchor (USIP Chinese-engagement study)" },
+
+  { country: "DR Congo", iso3: "COD", visitCount: 1,
+    cities: [
+      { name: "Kinshasa", lat: -4.4419, lon:  15.2663 },
+      { name: "Goma",     lat: -1.6792, lon:  29.2228 }
+    ],
+    visits: "May 2015",
+    note: "Aid in Conflict book elite-interview field visit" },
+
+  { country: "Senegal", iso3: "SEN", visitCount: 1,
+    cities: [
+      { name: "Dakar", lat: 14.7167, lon: -17.4677 }
+    ],
+    visits: "Jan 2012",
+    note: "Development Gateway Aid Management Platform workshop" },
+
+  { country: "Malawi", iso3: "MWI", visitCount: 1,
+    cities: [
+      { name: "Lilongwe", lat: -13.9626, lon:  33.7741 }
+    ],
+    visits: "Jan 2011",
+    note: "Malawi's Open Aid Map (World Bank 2014 paper)" },
+
+  { country: "Germany", iso3: "DEU", visitCount: 2,
+    cities: [
+      { name: "Munich", lat: 48.1351, lon:  11.5820 },
+      { name: "Berlin", lat: 52.5200, lon:  13.4050 }
+    ],
+    visits: "May 2012 (Munich); Feb 2015 (Berlin)" },
+
+  { country: "Switzerland", iso3: "CHE", visitCount: 1,
+    cities: [
+      { name: "Geneva", lat: 46.2044, lon:   6.1432 }
+    ],
+    visits: "Jan 2013" },
+
+  { country: "Israel", iso3: "ISR", visitCount: 1,
+    cities: [
+      { name: "Tel Aviv",   lat: 32.0853, lon:  34.7818 },
+      { name: "Jerusalem",  lat: 31.7683, lon:  35.2137 }
+    ],
+    visits: "Jun 2009" },
+
+  { country: "Guatemala", iso3: "GTM", visitCount: 1,
+    cities: [
+      { name: "Antigua",       lat: 14.5586, lon: -90.7295 },
+      { name: "Chimaltenango", lat: 14.6611, lon: -90.8197 },
+      { name: "Panajachel",    lat: 14.7411, lon: -91.1564 }
+    ],
+    visits: "May 2009" },
+
+  { country: "Russia", iso3: "RUS", visitCount: 24,
+    cities: [
+      { name: "Yekaterinburg", lat: 56.8389, lon:  60.6057 },
+      { name: "Ufa",           lat: 54.7388, lon:  55.9721 },
+      { name: "Cheliabinsk",   lat: 55.1644, lon:  61.4368 },
+      { name: "Perm",          lat: 58.0105, lon:  56.2502 }
+    ],
+    visits: "Oct 1995 — Sep 1997 (two-year immersion)",
+    note: "Russian-language proficiency foundation; pre-academic context",
+    legacy: true },
+
+  { country: "Mexico", iso3: "MEX", visitCount: 1,
+    cities: [
+      { name: "Mexico City", lat: 19.4326, lon: -99.1332 },
+      { name: "Toluca",      lat: 19.2826, lon: -99.6557 }
+    ],
+    visits: "Jun-Jul 1993",
+    legacy: true },
+
+  { country: "United States", iso3: "USA", visitCount: 15,
+    cities: [],
+    visits: "Field experiments on 3,000+ U.S. municipalities; based at UT Austin since 2012.",
+    note: "Jensen, Findley, Nielson. 2020. AJPS. \"Electoral Institutions and Electoral Cycles in Investment Incentives.\" + Chatterji, Findley, Jensen, Meier, Nielson. 2016. SMJ. \"Field Experiments in Strategy Research.\"" },
+
+  // ── Research-only countries (visitCount: 0) — substantive country focus
+  //    in a paper / report, but no personal field visit.
+  { country: "Peru", iso3: "PER", visitCount: 0, cities: [],
+    note: "Sexton, Wellhausen & Findley. 2019. AJPS. \"How Government Reactions to Violence Worsen Social Welfare: Evidence from Peru.\"" },
+
+  { country: "Afghanistan", iso3: "AFG", visitCount: 0, cities: [],
+    note: "Callen, Fajardo-Steinhäuser, Findley & Ghani. 2025. Management Science. \"Can Digital Aid Deliver in Humanitarian Crises?\" — WFP digital cash in Afghanistan." },
+
+  { country: "Pakistan", iso3: "PAK", visitCount: 0, cities: [],
+    note: "Findley & Fajardo-Steinhäuser. \"Digital vs. Physical Cash in Humanitarian Assistance: Evidence from Pakistan.\" (In progress.)" },
+
+  { country: "China", iso3: "CHN", visitCount: 0, cities: [],
+    note: "Findley & Nong. \"Leaders, Factions, and Political Violence: Evidence from China's Cultural Revolution.\" Monthly dataset across 2,267 Chinese counties. (In progress.)" },
+
+  { country: "Nepal", iso3: "NPL", visitCount: 0, cities: [],
+    note: "Findley, Campbell & Swedlund. Aid in Conflict (Princeton UP, book ms.). Nepal is one of four primary case countries." },
+
+  { country: "Armenia", iso3: "ARM", visitCount: 0, cities: [],
+    note: "Denly, Findley, Gerring & Wellhausen + Denly, Findley, Rejepov & Wellhausen. 2019. USAID DRG evidence reviews (Governance + Integrity Systems and Rule of Law)." },
+
+  { country: "Burundi", iso3: "BDI", visitCount: 0, cities: [],
+    note: "Campbell, Dexter, Findley, Hofmann, Marineau & Walker. 2015. UN PBSO. Independent External Evaluation of the UN Peacebuilding Fund Portfolio in Burundi, 2007–2013." }
+];
+
+// Build a flat country-keyed dict for fast lookup.
+const byIso = {};
+fieldwork.forEach(f => byIso[f.iso3] = f);
+
+// =========================================================================
+// EVALUASI ENGAGEMENT — 52 countries from the "Where we work" sheet.
+// tier 1 = standard engagement (col-4 = 1, or non-flagged non-African).
+// tier 2 = secondary engagement (col-4 = 2: Burkina Faso, Mali, Niger, Zambia).
+// =========================================================================
+const evaluasi = [
+  { iso3: "USA", tier: 1 }, { iso3: "CAN", tier: 1 }, { iso3: "FRA", tier: 1 },
+  { iso3: "DEU", tier: 1 }, { iso3: "NLD", tier: 1 }, { iso3: "GBR", tier: 1 },
+  { iso3: "VNM", tier: 1 }, { iso3: "MMR", tier: 1 }, { iso3: "UGA", tier: 1 },
+  { iso3: "RWA", tier: 1 }, { iso3: "COD", tier: 1 }, { iso3: "SDN", tier: 1 },
+  { iso3: "SSD", tier: 1 }, { iso3: "KEN", tier: 1 }, { iso3: "TZA", tier: 1 },
+  { iso3: "MWI", tier: 1 }, { iso3: "ZAF", tier: 1 }, { iso3: "ETH", tier: 1 },
+  { iso3: "SEN", tier: 1 }, { iso3: "COL", tier: 1 }, { iso3: "HND", tier: 1 },
+  { iso3: "ISR", tier: 1 }, { iso3: "BHS", tier: 1 }, { iso3: "PER", tier: 1 },
+  { iso3: "ECU", tier: 1 }, { iso3: "PHL", tier: 1 }, { iso3: "THA", tier: 1 },
+  { iso3: "IDN", tier: 1 }, { iso3: "MYS", tier: 1 }, { iso3: "AFG", tier: 1 },
+  { iso3: "SLE", tier: 1 }, { iso3: "TUR", tier: 1 }, { iso3: "IND", tier: 1 },
+  { iso3: "GHA", tier: 1 }, { iso3: "PRT", tier: 1 }, { iso3: "RUS", tier: 1 },
+  { iso3: "MEX", tier: 1 }, { iso3: "BGD", tier: 1 }, { iso3: "KHM", tier: 1 },
+  { iso3: "TCD", tier: 1 }, { iso3: "SLV", tier: 1 }, { iso3: "GTM", tier: 1 },
+  { iso3: "LBR", tier: 1 }, { iso3: "NPL", tier: 1 }, { iso3: "NGA", tier: 1 },
+  { iso3: "SYR", tier: 1 }, { iso3: "YEM", tier: 1 }, { iso3: "ZWE", tier: 1 },
+  { iso3: "BFA", tier: 2 }, { iso3: "MLI", tier: 2 }, { iso3: "NER", tier: 2 },
+  { iso3: "ZMB", tier: 2 }
+];
+const byIsoE = {};
+evaluasi.forEach(e => byIsoE[e.iso3] = e);
+
+// =========================================================================
+// MAP — D3 + TopoJSON, Robinson projection for elegance, Mercator for
+// the natural-zoom feel.  Robinson is cleaner globally; we use it.
+// =========================================================================
+const svg = d3.select("#map");
+const W = window.innerWidth, H = window.innerHeight;
+svg.attr("viewBox", `0 0 ${W} ${H}`);
+
+const gZoom = svg.append("g").attr("class", "zoom");
+
+const projection = d3.geoNaturalEarth1()
+  .scale(W / 6.0)
+  .translate([W / 2, H * 0.52]);
+const pathGen = d3.geoPath(projection);
+
+const tt = d3.select("#tt");
+function showTip(html, ev) {
+  tt.html(html).style("display", "block")
+    .style("left", (ev.clientX + 16) + "px")
+    .style("top",  (ev.clientY + 16) + "px");
+}
+function hideTip() { tt.style("display", "none"); }
+
+// Load world boundaries from the d3 / topojson-friendly world-atlas CDN.
+const WORLD_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+d3.json(WORLD_URL).then(world => {
+  const countries = topojson.feature(world, world.objects.countries).features;
+
+  // Build a name -> iso3 mapping for the 110m dataset.  The dataset uses
+  // numeric ids; we look up by `properties.name`.  Below maps each name
+  // we care about to its iso3.
+  const NAME_TO_ISO3 = {
+    // Existing fieldwork
+    "Colombia": "COL", "Uganda": "UGA", "Kenya": "KEN", "Bahamas": "BHS",
+    "The Bahamas": "BHS",
+    "South Africa": "ZAF", "United Kingdom": "GBR",
+    "Sweden": "SWE", "Rwanda": "RWA", "France": "FRA",
+    "Morocco": "MAR", "Ethiopia": "ETH", "Tanzania": "TZA",
+    "Sudan": "SDN", "S. Sudan": "SSD", "South Sudan": "SSD",
+    "Dem. Rep. Congo": "COD", "Democratic Republic of the Congo": "COD",
+    "Senegal": "SEN", "Malawi": "MWI",
+    "Germany": "DEU", "Switzerland": "CHE", "Israel": "ISR",
+    "Guatemala": "GTM", "Russia": "RUS", "Mexico": "MEX",
+    // Research-only additions
+    "Peru": "PER", "Afghanistan": "AFG", "Pakistan": "PAK", "China": "CHN",
+    "Nepal": "NPL", "Armenia": "ARM", "Burundi": "BDI",
+    // U.S. (visited fieldwork)
+    "United States of America": "USA", "United States": "USA",
+    // Evaluasi-only additions
+    "Canada": "CAN", "Netherlands": "NLD", "Vietnam": "VNM", "Myanmar": "MMR",
+    "Honduras": "HND", "Ecuador": "ECU", "Philippines": "PHL", "Thailand": "THA",
+    "Indonesia": "IDN", "Malaysia": "MYS", "Sierra Leone": "SLE", "Turkey": "TUR",
+    "India": "IND", "Ghana": "GHA", "Portugal": "PRT",
+    "Bangladesh": "BGD", "Burkina Faso": "BFA", "Cambodia": "KHM",
+    "Chad": "TCD", "El Salvador": "SLV", "Liberia": "LBR", "Mali": "MLI",
+    "Niger": "NER", "Nigeria": "NGA", "Syria": "SYR", "Yemen": "YEM",
+    "Zambia": "ZMB", "Zimbabwe": "ZWE"
+  };
+
+  // Render countries.
+  gZoom.append("g").attr("class", "countries")
+    .selectAll("path")
+    .data(countries)
+    .join("path")
+    .attr("class", d => {
+      const iso3 = NAME_TO_ISO3[d.properties.name];
+      if (!iso3) return "country";
+      const f = byIso[iso3];
+      if (!f) return "country";
+      const n = f.visitCount;
+      let t;
+      if (n === 0)      t = "t0";
+      else if (n === 1) t = "t1";
+      else if (n <= 3)  t = "t2";
+      else if (n <= 6)  t = "t3";
+      else              t = "t4";
+      return "country " + t;
+    })
+    .attr("d", pathGen)
+    .on("mouseenter", (ev, d) => {
+      const iso3 = NAME_TO_ISO3[d.properties.name];
+      if (!iso3) return;
+      const f = byIso[iso3];        // fieldwork or research-only
+      const e = byIsoE[iso3];        // Evaluasi engagement
+      if (!f && !e) return;
+      const name = f ? f.country : d.properties.name;
+      let html = `<div class="tt-title">${name}</div>`;
+      if (f) {
+        if (f.visits) html += `<div class="tt-sub">${f.visits}</div>`;
+        if (f.cities && f.cities.length) {
+          html += `<div class="tt-body">${f.cities.map(c => c.name).join(", ")}</div>`;
+        }
+        if (f.note) html += `<div class="tt-body">${f.note}</div>`;
+        if (f.legacy) html += `<div class="tt-flag">★ Pre-academic / legacy</div>`;
+        else if (f.visitCount === 0) html += `<div class="tt-flag" style="color:#4A7B9D">★ Research only — no personal visit</div>`;
+        else if (f.visitCount >= 7) html += `<div class="tt-flag">★ Deep engagement</div>`;
+      }
+      if (e) {
+        html += `<div class="tt-body" style="color:#B07A1F"><strong>Evaluasi engagement</strong></div>`;
+      }
+      showTip(html, ev);
+    })
+    .on("mousemove", (ev) => {
+      tt.style("left", (ev.clientX + 16) + "px").style("top", (ev.clientY + 16) + "px");
+    })
+    .on("mouseleave", hideTip);
+
+  // Render city dots.  Size scales with country-level visit depth.
+  const cities = [];
+  fieldwork.forEach(f => {
+    f.cities.forEach(c => {
+      cities.push({
+        country: f.country,
+        name: c.name,
+        lat: c.lat,
+        lon: c.lon,
+        deep: !!f.deep,
+        legacy: !!f.legacy,
+        visits: f.visits,
+        note: f.note
+      });
+    });
+  });
+
+  gZoom.append("g").attr("class", "cities")
+    .selectAll("circle")
+    .data(cities)
+    .join("circle")
+    .attr("class", "city")
+    .attr("cx", d => projection([d.lon, d.lat])[0])
+    .attr("cy", d => projection([d.lon, d.lat])[1])
+    .attr("r", d => d.deep ? 4.5 : 3.0)
+    .on("mouseenter", (ev, d) => {
+      const flag = d.legacy ? `<div class="tt-flag">★ Pre-academic / legacy</div>` : (d.deep ? `<div class="tt-flag">★ Deep engagement</div>` : "");
+      const note = d.note ? `<div class="tt-body">${d.note}</div>` : "";
+      showTip(`<div class="tt-title">${d.name}</div>
+               <div class="tt-sub">${d.country} · ${d.visits}</div>
+               ${note}${flag}`, ev);
+    })
+    .on("mousemove", (ev) => {
+      tt.style("left", (ev.clientX + 16) + "px").style("top", (ev.clientY + 16) + "px");
+    })
+    .on("mouseleave", hideTip);
+
+  // Evaluasi engagement rings at country centroids — solid for primary tier,
+  // dashed for the four col-4=2 secondary-tier African countries.
+  const evaluasiPoints = countries.map(d => {
+    const iso3 = NAME_TO_ISO3[d.properties.name];
+    const e = iso3 && byIsoE[iso3];
+    if (!e) return null;
+    const c = pathGen.centroid(d);
+    if (isNaN(c[0]) || isNaN(c[1])) return null;
+    return { x: c[0], y: c[1], tier: e.tier, iso3 };
+  }).filter(Boolean);
+
+  gZoom.append("g").attr("class", "evaluasi-layer")
+    .selectAll("circle")
+    .data(evaluasiPoints)
+    .join("circle")
+    .attr("class", "evaluasi")
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y)
+    .attr("r", 7);
+});
+
+// Zoom + pan
+const zoom = d3.zoom()
+  .scaleExtent([0.6, 8])
+  .on("zoom", (ev) => { gZoom.attr("transform", ev.transform); });
+svg.call(zoom);
+
+// Re-render on window resize (keep responsive)
+let resizeT = null;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeT);
+  resizeT = setTimeout(() => { location.reload(); }, 250);
+});
+</script>
+</body>
+</html>
