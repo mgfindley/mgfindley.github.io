@@ -1254,6 +1254,71 @@
 // Supplement data: keyed by paper PDF filename (without pdfs/ prefix)
 // Each entry can have: appendix, replication, codebook (arrays of {label, file})
 const supplements = {
+
+  // 2026
+  'title:a_natural_field_experiment_on_': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/LFOQLJ'}]
+  },
+  // 2025
+  'ms_2025_can-digital-aid-deliver.pdf': {
+    pap: [{label:'Pre-Analysis Plan', file:'https://www.socialscienceregistry.org/trials/10189'}]
+  },
+  'pop_2025_policing-inequality.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/LLRHWU'}]
+  },
+  'ajps_2025_banking-bad.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/VBNCF2'}],
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/ankcq/'}]
+  },
+  // 2024
+  'pnas_2024_vulnerability.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/FC5IPF'}]
+  },
+  'isq_2024_territory-resources.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/AMJC1O'}]
+  },
+  // 2023
+  'ps_2023_diversity_liuetal.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/F5PP8C'}]
+  },
+  // 2020
+  'ajps_2020_elections-investment.pdf': {
+    appendix: [{label:'Appendix', file:'pdfs/investincentives_appendix.pdf'}],
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/8PIIAI'}],
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/fgv8n/'}]
+  },
+  // 2019
+  'ajps_2019_peru_early-view.pdf': {
+    appendix: [{label:'Appendix', file:'https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fajps.12415&file=ajps12415-sup-0001-SuppMat.pdf'}],
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/HUZGPJ'}]
+  },
+  // 2017
+  'isr_2017_ontologies.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/MNEYJ6'}]
+  },
+  'jop_2017_survey-field.pdf': {
+    replication: [{label:'Replication Data', file:'https://doi.org/10.7910/DVN/WZE08F'}],
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
+  },
+  'jibs_2017_shell.pdf': {
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
+  },
+  // 2016
+  'smj_2016_field-experiments.pdf': {
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/fgv8n/'}]
+  },
+  // 2015
+  'orchestration_2015.pdf': {
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
+  },
+  // 2014
+  'funding_terror.2014.reprint.upenn_law_review.6mar14.pdf': {
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
+  },
+  // 2013
+  'does-intl-law-matter_pre-publication-version.pdf': {
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
+  },
   // 2023
   'isq_2023_aidingwar.pdf': {
     appendix: [{label:'Appendix', file:'pdfs/appendix_foreignaid_conflict_5dec2020_mgf.pdf'}]
@@ -1290,7 +1355,8 @@ const supplements = {
   },
   'ajps_2015_causes-noncompliance.pdf': {
     appendix: [{label:'Appendix', file:'pdfs/appendix.causes_of_non-compliance.final.29apr2014.pdf'}],
-    replication: [{label:'Replication Data', file:'pdfs/ajps_replication_data.zip'}]
+    replication: [{label:'Replication Data', file:'pdfs/ajps_replication_data.zip'}],
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
   },
   'cmps_online2015_resources-intervention.pdf': {
     appendix: [{label:'Appendix', file:'pdfs/appendix_1may2014.pdf'}],
@@ -1311,7 +1377,8 @@ const supplements = {
   },
   'io_2013_field-experiments.pdf': {
     appendix: [{label:'Appendix', file:'pdfs/appendix.checking_shell_corporations.13mar12.pdf'}],
-    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_io-2013.zip'}]
+    replication: [{label:'Replication Data', file:'pdfs/final-replication-data_io-2013.zip'}],
+    pap: [{label:'Pre-Analysis Plan', file:'https://osf.io/h2jfm/'}]
   },
   // 2012
   'jop_2011_rivalry-terror.pdf': {
@@ -1572,6 +1639,7 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
       data.replication.forEach(r => {
         const btn = document.createElement('a');
         btn.href = r.file;
+        if (/^https?:/.test(r.file)) btn.target = '_blank';
         btn.textContent = r.label;
         supps.appendChild(btn);
       });
