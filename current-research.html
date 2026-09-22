@@ -95,10 +95,17 @@
       margin-right: 8px;
       vertical-align: middle;
     }
-    /* Security, Conflict, & Peace Evidence pill nav — matches the home page tagline
-       block.  Four substantive pills in a row, Methodology as a
-       full-width foundational band below.  Pills are anchor links to
-       the sections on this page. */
+    /* SCOPE pill nav, matching the home page tagline block. Four pills in a row
+       (Security, Conflict, Peace, Evidence), each an anchor link to its section.
+       Updated 2026-09-22; previous version preserved at git tag pre-scope-categories-2026-09-22. */
+    .tagline-block .scope-mark {
+      display: inline-block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      margin-right: 12px;
+      vertical-align: -2px;
+    }
     .tagline-block {
       margin: 0 0 36px;
     }
@@ -156,6 +163,7 @@
     }
     @media (max-width: 680px) {
       .tagline-block .tq { white-space: normal; flex: 1 1 40%; }
+      .tagline-block .scope-mark { display: block; margin: 0 0 4px; }
     }
     /* Map container — explicit height */
     .research-map-frame {
@@ -227,28 +235,25 @@
 <main class="wide">
   <h1>Current Research</h1>
   <p style="color:var(--text-secondary);margin-bottom:20px;">
-    My current research is organized around <strong>Security, Conflict, &amp; Peace Evidence</strong> — four substantive dimensions plus a methodology foundation. Some projects are cross-listed where they span buckets. For published work, see <a href="publications.html">Publications</a>.
+    My current research is organized around <strong>SCOPE</strong>: Security, Conflict, &amp; Peace Evidence. Some projects are cross-listed where they span areas. For published work, see <a href="publications.html">Publications</a>.
   </p>
 
   <div class="tagline-block">
-    <div class="tagline-label">Research umbrella: Security, Conflict, &amp; Peace Evidence</div>
+    <div class="tagline-label"><span class="scope-mark">SCOPE</span>Security, Conflict, &amp; Peace Evidence</div>
     <div class="tagline-questions">
-      <a href="#pressure" class="tq">Pressure</a>
-      <a href="#persuasion" class="tq">Persuasion</a>
-      <a href="#stabilization" class="tq">Stabilization</a>
-      <a href="#dynamics" class="tq">Dynamics</a>
-    </div>
-    <div class="tagline-foundation">
-      <a href="#methodology" class="tq tq-foundation">Methodology</a>
+      <a href="#security" class="tq">Security</a>
+      <a href="#conflict" class="tq">Conflict</a>
+      <a href="#peace" class="tq">Peace</a>
+      <a href="#evidence" class="tq">Evidence</a>
     </div>
     <div class="tagline-maplink">
       <a href="#map">Jump to Research Map &darr;</a>
     </div>
   </div>
 
-  <!-- Pressure -->
-  <div class="domain-section" id="pressure">
-    <div class="domain-header"><span class="domain-dot" style="background:#D85A30;"></span>Pressure</div>
+  <!-- Security -->
+  <div class="domain-section" id="security">
+    <div class="domain-header"><span class="domain-dot" style="background:#D85A30;"></span>Security</div>
     <div class="book-card" style="border-left-color:#D85A30;">
       <div class="card-title">Banking Bad: How Criminals Hack Global Finance <span class="status-tag progress">In Progress</span> <span class="book-tag">Book</span></div>
       <div class="card-authors">w/ Daniel L. Nielson and J.C. Sharman</div>
@@ -258,7 +263,7 @@
     <div class="pub-entry">
       <div class="pub-type-badge" style="background:#D85A30;"></div>
       <div class="pub-content">
-        <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Methodology</span></div>
+        <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Evidence</span></div>
         <div class="pub-meta">w/ Daniel L. Nielson and J.C. Sharman</div>
         <div class="project-desc">External validity is a central challenge in evaluating financial-compliance interventions: policymakers must know not only whether mechanisms work, but whether their effects generalize or transport across countries, financial institutions, legal standards, compliance outcomes, and time. We address this through a coordinated global audit/field experiment research program (2011–2022) comprising two overarching waves, four major studies, 11 study modules, and more than 50,000 email audit approaches to financial institutions in over 200 countries. We deliberately investigated core mechanisms across diverse settings, treatments, outcomes, units, and time. We introduce a new preregistered external-validity comparison: a structured evaluation of individual-study methods versus multi-study synthesis methods. Substantively, the design enables rare characterization of the external validity of core financial-compliance mechanisms; methodologically, it provides guidance for how to approach external validity assessment.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
@@ -267,7 +272,7 @@
     <div class="pub-entry">
       <div class="pub-type-badge" style="background:#D85A30;"></div>
       <div class="pub-content">
-        <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Methodology</span></div>
+        <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Evidence</span></div>
         <div class="pub-meta">w/ Brent Allred, Daniel L. Nielson, and J.C. Sharman</div>
         <div class="project-desc">Field experiments allow international business researchers to address critical questions that cannot be effectively studied by employing other methodologies such as surveys, non-experimental databases, or small sample cross-country/firm studies. We highlight the value of field experiments and conduct a study testing the price-sensitivity of firms offering incorporation services for creating shell companies. Drawing upon data collected from 782 incorporation firms in 148 countries, resulting in 1,046 responses, we test whether incorporation firms charge a price premium when asked to create an anonymous shell corporation, in violation of international law, by customers with varying risk profiles. Confounding bedrock conventional assumptions about businesses responding to higher risks by requiring higher rewards, we find that businesses supplying shell companies are remarkably price insensitive to even the most obvious risks of serious criminal intent by their customers.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
@@ -275,27 +280,40 @@
     </div>
   </div>
 
-  <!-- Persuasion -->
-  <div class="domain-section" id="persuasion">
-    <div class="domain-header"><span class="domain-dot" style="background:#1D9E75;"></span>Persuasion</div>
-    <div class="book-card" style="border-left-color:#1D9E75;">
-      <div class="card-title">Aid in Conflict <span class="status-tag progress">In Progress</span> <span class="book-tag">Book</span> <span class="book-tag">Cross-listed · Stabilization</span></div>
-      <div class="card-authors">w/ Susanna Campbell and Haley Swedlund</div>
-      <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
-      <div class="project-desc">Aid in Conflict tells the story of the international aid industry in conflict-affected settings. Over the past three decades, conflict-affected countries have become the largest recipients of foreign aid. Donors have pledged not only to give large amounts of aid to these areas but to do so in a way that builds peace and reduces violence. Despite this commitment, pathologies within the aid industry make it unlikely that aid will solve the challenge of violent conflict. Based on 165 elite interviews and subnational statistical analysis of aid allocation across more than seventy donors operating in the DRC, Nepal, South Sudan, and Sudan (1990–2015), the book shows that it is the structure of donors, not violence itself, that determines how donors respond to conflict. Within the same country context, different donors pursue radically different and often contradictory strategies, jockeying for influence often to the detriment of recipient countries.</div>
-    </div>
+  <!-- Conflict -->
+  <div class="domain-section" id="conflict">
+    <div class="domain-header"><span class="domain-dot" style="background:#7F77DD;"></span>Conflict</div>
     <div class="pub-entry">
-      <div class="pub-type-badge" style="background:#1D9E75;"></div>
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
       <div class="pub-content">
-        <div class="pub-title">When Technology Meets Necessity: Digital vs. Traditional Humanitarian Aid in Pakistan <span class="status-tag progress">In Progress</span></div>
-        <div class="pub-meta">w/ Miguel Fajardo-Steinhauser</div>
+        <div class="pub-title">Rebel Sophistication in Aid Targeting: Insights from LRA Inner Circles <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Trey Billing, David Backer, and Jiseon Chang</div>
+        <div class="project-desc">Rebel groups can display remarkable sophistication during armed conflict that goes unrecognized because such tactics are difficult to observe and rarely documented at the operational level. We tackle a puzzle of variation in rebel targeting of foreign aid, illuminating the formulation and adaptation of associated tactics. We triangulate original primary data from interviews and focus groups with ex-commanders of the Lord’s Resistance Army (LRA), high-level leaders of the Ugandan Peoples’ Defence Forces (UPDF), elected government officials, and a survey of over 1,200 residents of areas affected by LRA activities. The LRA’s tactics tended to be most sophisticated when it had high strategic aspirations alongside facing high material demands. The LRA exploited violence against civilians to cause humanitarian needs, precipitating aid flows targetable consistent with its requirements. Our findings provide insight into the development of tactics in seemingly ragtag rebel groups.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
-      <div class="pub-type-badge" style="background:#1D9E75;"></div>
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
       <div class="pub-content">
-        <div class="pub-title">Do Aid Shocks Cause Conflict? Evidence from the Dismantlement of USAID <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Dynamics</span></div>
+        <div class="pub-title">Leaders, Factions, and Political Violence: Evidence from China's Cultural Revolution <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Xin Nong</div>
+        <div class="project-desc">China’s Cultural Revolution (1966–1976) ranks among the deadliest events of the twentieth century, yet it remains understudied in conflict research. A central puzzle is the widespread fragmentation of rebel groups at the local level. This paper conceptualizes rebel fragmentation as a bargaining failure driven by two forces. First, secret alliances with different factions in Beijing fueled mutual optimism, consistent with local power seizures that often drew counterclaims from rival patrons. Second, the military, tasked with “supporting the left” under vague and shifting directives, struggled to identify who qualified as leftists, leaving its commitment to enforce agreements in doubt. Using a novel monthly dataset of violence across 2,267 counties, we show that both power seizures and military intervention significantly increased the likelihood of rebel fragmentation. Moreover, fragmentation is associated with higher subsequent violence, consistent with the interpretation of fragmentation as bargaining failure.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Experimental Evidence on Ethnic Identification and Deception <span class="status-tag progress">In Progress</span> <span class="book-tag">Also: Evidence</span></div>
+        <div class="pub-meta">w/ Habyarimana, Harris, Humphreys, Nielson, Posner, Weinstein</div>
+        <div class="project-desc">Micro-level theories of ethnic politics commonly assume that individuals can identify the ethnic backgrounds of the people with whom they interact. While this assumption underlies a vast number of theories, we lack systematic evidence regarding under what conditions it is more or less justifiable. This study fills a gap by proposing a theoretical structure of social classification that enables us to examine ethnic classification and understand the variability in ethnic identifiability. Drawing on lab experiments conducted in ethnically diverse Uganda, South Africa, and the United States, ethnic identification errors provide the basis for constructing a new measure of group distinctness. We use this measure to examine the potential for passing through the strategic use of signals and find that successful passing is more likely when individuals attempt to pass into groups that are similar to their own but distinct from the group of the person trying to place them.</div>
+        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-content">
+        <div class="pub-title">Do Aid Shocks Cause Conflict? Evidence from the Dismantlement of USAID <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Peace</span></div>
         <div class="pub-meta">w/ Smith and Kim</div>
         <div class="project-desc">Summary TBA.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
@@ -303,11 +321,11 @@
     </div>
   </div>
 
-  <!-- Stabilization -->
-  <div class="domain-section" id="stabilization">
-    <div class="domain-header"><span class="domain-dot" style="background:#378ADD;"></span>Stabilization</div>
+  <!-- Peace -->
+  <div class="domain-section" id="peace">
+    <div class="domain-header"><span class="domain-dot" style="background:#378ADD;"></span>Peace</div>
     <div class="book-card" style="border-left-color:#378ADD;">
-      <div class="card-title">Aid in Conflict <span class="status-tag progress">In Progress</span> <span class="book-tag">Book</span> <span class="book-tag">Cross-listed · Persuasion</span></div>
+      <div class="card-title">Aid in Conflict <span class="status-tag progress">In Progress</span> <span class="book-tag">Book</span></div>
       <div class="card-authors">w/ Susanna Campbell and Haley Swedlund</div>
       <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       <div class="project-desc">Aid in Conflict tells the story of the international aid industry in conflict-affected settings. Over the past three decades, conflict-affected countries have become the largest recipients of foreign aid. Donors have pledged not only to give large amounts of aid to these areas but to do so in a way that builds peace and reduces violence. Despite this commitment, pathologies within the aid industry make it unlikely that aid will solve the challenge of violent conflict. Based on 165 elite interviews and subnational statistical analysis of aid allocation across more than seventy donors operating in the DRC, Nepal, South Sudan, and Sudan (1990–2015), the book shows that it is the structure of donors, not violence itself, that determines how donors respond to conflict. Within the same country context, different donors pursue radically different and often contradictory strategies, jockeying for influence often to the detriment of recipient countries.</div>
@@ -338,42 +356,18 @@
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
-  </div>
-
-  <!-- Dynamics -->
-  <div class="domain-section" id="dynamics">
-    <div class="domain-header"><span class="domain-dot" style="background:#7F77DD;"></span>Dynamics</div>
     <div class="pub-entry">
-      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
       <div class="pub-content">
-        <div class="pub-title">Rebel Sophistication in Aid Targeting: Insights from LRA Inner Circles <span class="status-tag progress">In Progress</span></div>
-        <div class="pub-meta">w/ Trey Billing, David Backer, and Jiseon Chang</div>
-        <div class="project-desc">Rebel groups can display remarkable sophistication during armed conflict that goes unrecognized because such tactics are difficult to observe and rarely documented at the operational level. We tackle a puzzle of variation in rebel targeting of foreign aid, illuminating the formulation and adaptation of associated tactics. We triangulate original primary data from interviews and focus groups with ex-commanders of the Lord’s Resistance Army (LRA), high-level leaders of the Ugandan Peoples’ Defence Forces (UPDF), elected government officials, and a survey of over 1,200 residents of areas affected by LRA activities. The LRA’s tactics tended to be most sophisticated when it had high strategic aspirations alongside facing high material demands. The LRA exploited violence against civilians to cause humanitarian needs, precipitating aid flows targetable consistent with its requirements. Our findings provide insight into the development of tactics in seemingly ragtag rebel groups.</div>
+        <div class="pub-title">When Technology Meets Necessity: Digital vs. Traditional Humanitarian Aid in Pakistan <span class="status-tag progress">In Progress</span></div>
+        <div class="pub-meta">w/ Miguel Fajardo-Steinhauser</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
       </div>
     </div>
     <div class="pub-entry">
-      <div class="pub-type-badge" style="background:#7F77DD;"></div>
+      <div class="pub-type-badge" style="background:#378ADD;"></div>
       <div class="pub-content">
-        <div class="pub-title">Leaders, Factions, and Political Violence: Evidence from China's Cultural Revolution <span class="status-tag progress">In Progress</span></div>
-        <div class="pub-meta">w/ Xin Nong</div>
-        <div class="project-desc">China’s Cultural Revolution (1966–1976) ranks among the deadliest events of the twentieth century, yet it remains understudied in conflict research. A central puzzle is the widespread fragmentation of rebel groups at the local level. This paper conceptualizes rebel fragmentation as a bargaining failure driven by two forces. First, secret alliances with different factions in Beijing fueled mutual optimism, consistent with local power seizures that often drew counterclaims from rival patrons. Second, the military, tasked with “supporting the left” under vague and shifting directives, struggled to identify who qualified as leftists, leaving its commitment to enforce agreements in doubt. Using a novel monthly dataset of violence across 2,267 counties, we show that both power seizures and military intervention significantly increased the likelihood of rebel fragmentation. Moreover, fragmentation is associated with higher subsequent violence, consistent with the interpretation of fragmentation as bargaining failure.</div>
-        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
-      </div>
-    </div>
-    <div class="pub-entry">
-      <div class="pub-type-badge" style="background:#7F77DD;"></div>
-      <div class="pub-content">
-        <div class="pub-title">Experimental Evidence on Ethnic Identification and Deception <span class="status-tag progress">In Progress</span> <span class="book-tag">Also: Methodology</span></div>
-        <div class="pub-meta">w/ Habyarimana, Harris, Humphreys, Nielson, Posner, Weinstein</div>
-        <div class="project-desc">Micro-level theories of ethnic politics commonly assume that individuals can identify the ethnic backgrounds of the people with whom they interact. While this assumption underlies a vast number of theories, we lack systematic evidence regarding under what conditions it is more or less justifiable. This study fills a gap by proposing a theoretical structure of social classification that enables us to examine ethnic classification and understand the variability in ethnic identifiability. Drawing on lab experiments conducted in ethnically diverse Uganda, South Africa, and the United States, ethnic identification errors provide the basis for constructing a new measure of group distinctness. We use this measure to examine the potential for passing through the strategic use of signals and find that successful passing is more likely when individuals attempt to pass into groups that are similar to their own but distinct from the group of the person trying to place them.</div>
-        <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
-      </div>
-    </div>
-    <div class="pub-entry">
-      <div class="pub-type-badge" style="background:#7F77DD;"></div>
-      <div class="pub-content">
-        <div class="pub-title">Do Aid Shocks Cause Conflict? Evidence from the Dismantlement of USAID <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Persuasion</span></div>
+        <div class="pub-title">Do Aid Shocks Cause Conflict? Evidence from the Dismantlement of USAID <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Conflict</span></div>
         <div class="pub-meta">w/ Smith and Kim</div>
         <div class="project-desc">Summary TBA.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
@@ -381,9 +375,9 @@
     </div>
   </div>
 
-  <!-- Methodology -->
-  <div class="domain-section" id="methodology">
-    <div class="domain-header"><span class="domain-dot" style="background:#B07A1F;"></span>Methodology</div>
+  <!-- Evidence -->
+  <div class="domain-section" id="evidence">
+    <div class="domain-header"><span class="domain-dot" style="background:#B07A1F;"></span>Evidence</div>
     <div class="book-card" style="border-left-color:#B07A1F;">
       <div class="card-title">External Validity for Social Inquiry <span class="status-tag review">Revise and Resubmit</span> <span class="book-tag">Book</span></div>
       <div class="card-authors">w/ Michael Denly and Kyosuke Kikuta</div>
@@ -415,7 +409,7 @@
     <div class="pub-entry">
       <div class="pub-type-badge" style="background:#B07A1F;"></div>
       <div class="pub-content">
-        <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Pressure</span></div>
+        <div class="pub-title">Bank of Guineastan: Research Synthesis <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Security</span></div>
         <div class="pub-meta">w/ Daniel L. Nielson and J.C. Sharman</div>
         <div class="project-desc">External validity is a central challenge in evaluating financial-compliance interventions: policymakers must know not only whether mechanisms work, but whether their effects generalize or transport across countries, financial institutions, legal standards, compliance outcomes, and time. We address this through a coordinated global audit/field experiment research program (2011–2022) comprising two overarching waves, four major studies, 11 study modules, and more than 50,000 email audit approaches to financial institutions in over 200 countries. We deliberately investigated core mechanisms across diverse settings, treatments, outcomes, units, and time. We introduce a new preregistered external-validity comparison: a structured evaluation of individual-study methods versus multi-study synthesis methods. Substantively, the design enables rare characterization of the external validity of core financial-compliance mechanisms; methodologically, it provides guidance for how to approach external validity assessment.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
@@ -424,7 +418,7 @@
     <div class="pub-entry">
       <div class="pub-type-badge" style="background:#B07A1F;"></div>
       <div class="pub-content">
-        <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Pressure</span></div>
+        <div class="pub-title">Using Field Experiments in International Business Research: Pricing Risk in Shell Corporations <span class="status-tag progress">In Progress</span> <span class="book-tag">Cross-listed · Security</span></div>
         <div class="pub-meta">w/ Brent Allred, Daniel L. Nielson, and J.C. Sharman</div>
         <div class="project-desc">Field experiments allow international business researchers to address critical questions that cannot be effectively studied by employing other methodologies such as surveys, non-experimental databases, or small sample cross-country/firm studies. We highlight the value of field experiments and conduct a study testing the price-sensitivity of firms offering incorporation services for creating shell companies. Drawing upon data collected from 782 incorporation firms in 148 countries, resulting in 1,046 responses, we test whether incorporation firms charge a price premium when asked to create an anonymous shell corporation, in violation of international law, by customers with varying risk profiles. Confounding bedrock conventional assumptions about businesses responding to higher risks by requiring higher rewards, we find that businesses supplying shell companies are remarkably price insensitive to even the most obvious risks of serious criminal intent by their customers.</div>
         <div class="pub-links"><a href="#" style="opacity:0.4;pointer-events:none;">PDF TBA</a></div>
@@ -436,7 +430,7 @@
   <div class="section-title" style="margin-top:56px;" id="map">Research Map</div>
   <div class="map-intro">
     <p>
-      An interactive map of my full research portfolio — publications, courses, and policy work — organized around <strong>Security, Conflict, &amp; Peace Evidence</strong>: six buckets, each opening into sub-groups and individual works.
+      An interactive map of my full research portfolio — publications, courses, and policy work — organized around <strong>SCOPE</strong>: Security, Conflict, &amp; Peace Evidence. Each bucket opens into sub-groups and individual works.
       Click a bucket, then a sub-group, to expand. Hover for details. Dashed arcs show connections across buckets.
     </p>
   </div>
