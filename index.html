@@ -38,6 +38,14 @@
       color: var(--accent);
       margin-bottom: 10px;
     }
+    .tagline-block .scope-mark {
+      display: inline-block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      margin-right: 12px;
+      vertical-align: -2px;
+    }
     .tagline-block .tagline-questions {
       display: flex;
       flex-wrap: wrap;
@@ -53,8 +61,7 @@
       color: var(--accent);
       line-height: 1.3;
       white-space: nowrap;
-      /* Each pill grows equally so the four-pill row spans the full
-         width of the Methodology band below — left & right edges align. */
+      /* Each pill grows equally so the four-pill row spans the full width. */
       flex: 1 1 0;
       text-align: center;
       box-sizing: border-box;
@@ -89,6 +96,8 @@
       /* On narrow screens let the four pills wrap to a 2x2 grid rather
          than squeezing onto one line. */
       .tagline-block .tq { white-space: normal; flex: 1 1 40%; }
+      /* Stack the SCOPE wordmark above its expansion so neither wraps awkwardly. */
+      .tagline-block .scope-mark { display: block; margin: 0 0 4px; }
     }
     .book-card-lg {
       display: flex;
@@ -231,20 +240,17 @@
       </div>
 
       <p style="font-family:var(--font-serif);font-size:1.1rem;line-height:1.55;color:var(--text);margin:4px 0 24px;">
-        My work asks whether the tools meant to manage conflict actually work &mdash; pressure, persuasion, and stabilization &mdash; and turns security, conflict, and peace into questions of evidence, answered with field experiments, computational models, and fieldwork.
+        My work turns security, conflict, and peace into questions of evidence, and asks how far that evidence travels: whether what worked in one place will work in the next. I answer those questions with field experiments, computational models, and fieldwork.
       </p>
 
-      <!-- Security, Conflict, & Peace Evidence research architecture -->
+      <!-- SCOPE: Security, Conflict, & Peace Evidence research architecture (updated 2026-09-22; previous Pressure/Persuasion/Stabilization/Dynamics version preserved at git tag pre-scope-categories-2026-09-22) -->
       <div class="tagline-block">
-        <div class="tagline-label">Research umbrella: Security, Conflict, &amp; Peace Evidence</div>
+        <div class="tagline-label"><span class="scope-mark">SCOPE</span>Security, Conflict, &amp; Peace Evidence</div>
         <div class="tagline-questions">
-          <span class="tq" title="Coercive instruments — sanctions, illicit-finance interdiction, beneficial-ownership transparency, terror financing">Pressure</span>
-          <span class="tq" title="Soft instruments — development aid, donor coordination, capacity building">Persuasion</span>
-          <span class="tq" title="Post-conflict, peacebuilding, ex-combatant reintegration, transitional governance">Stabilization</span>
-          <span class="tq" title="Positive analysis of conflict processes — civil war, terrorism, political violence">Dynamics</span>
-        </div>
-        <div class="tagline-foundation">
-          <span class="tq tq-foundation" title="Foundational band — external validity, transparency, pre-registration, research ethics">Methodology</span>
+          <span class="tq" title="Sanctions, illicit-finance interdiction, beneficial-ownership transparency, terror financing, counterinsurgency">Security</span>
+          <span class="tq" title="Civil war, terrorism, and political violence, and the forces that shape them, from aid shocks to natural resources">Conflict</span>
+          <span class="tq" title="Peacebuilding, ex-combatant reintegration, transitional governance, and the development that makes peace last">Peace</span>
+          <span class="tq" title="Generalizability and external validity, field experiments, pre-registration, research transparency and ethics">Evidence</span>
         </div>
       </div>
 
@@ -275,7 +281,7 @@
   <div class="section">
     <div class="section-title">Research Map</div>
     <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:18px;">
-      An interactive map of my full research portfolio &mdash; publications, courses, and policy work &mdash; organized around <strong>Security, Conflict, &amp; Peace Evidence</strong>. Click a bucket, then a sub-group, to expand.
+      An interactive map of my full research portfolio &mdash; publications, courses, and policy work &mdash; organized around <strong>SCOPE</strong>: Security, Conflict, &amp; Peace Evidence. Click a bucket, then a sub-group, to expand.
     </p>
     <div class="map-container" style="height:520px;">
       <iframe src="research-map-v1.1.html" title="Mike Findley Research Map"></iframe>
