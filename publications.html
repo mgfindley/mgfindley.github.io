@@ -183,6 +183,38 @@
     .pb-peace    { border-color: #378ADD; color: #378ADD; }
     .pb-evidence { border-color: #B07A1F; color: #B07A1F; }
 
+    /* SCOPE filter pills: same size and shape as the homepage pills, coloured by area */
+    .tagline-block { margin: 0 0 30px; }
+    .tagline-block .tagline-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px;
+    }
+    .tagline-block .scope-mark {
+      display: inline-block; font-size: 1.15rem; font-weight: 800;
+      letter-spacing: 0.22em; margin-right: 12px; vertical-align: -2px;
+    }
+    .tagline-block .tagline-questions { display: flex; flex-wrap: wrap; gap: 10px; max-width: 576px; }
+    .tagline-block .tq {
+      font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600;
+      padding: 8px 18px; border-radius: 24px; border: 2px solid var(--c);
+      color: var(--c); background: transparent; line-height: 1.3; white-space: nowrap;
+      flex: 1 1 0; text-align: center; cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tagline-block .tq[aria-pressed="false"]:hover { background: color-mix(in srgb, var(--c) 12%, transparent); }
+    .tagline-block .tq[aria-pressed="true"] { background: var(--c); color: #fff; }
+    .tagline-block .tq:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+    .filter-status { margin-top: 10px; font-size: 0.82rem; color: var(--text-secondary); min-height: 1.4em; }
+    .filter-status #filter-clear {
+      font: inherit; color: var(--accent); background: none; border: none; padding: 0 0 0 6px;
+      cursor: pointer; text-decoration: underline;
+    }
+    .pub-entry.is-filtered, .pub-year.is-filtered, .section-title.is-filtered { display: none !important; }
+    @media (max-width: 680px) {
+      .tagline-block .tq { white-space: normal; flex: 1 1 40%; }
+      .tagline-block .scope-mark { display: block; margin: 0 0 4px; }
+    }
+
     /* Legend */
     .pub-bucket-legend {
       display: flex;
@@ -236,13 +268,16 @@
     <a href="#map" class="pub-tab">Research Map</a>
   </div>
 
-  <!-- SCOPE area legend -->
-  <div class="pub-bucket-legend">
-    <span class="pbl-item"><strong style="letter-spacing:0.18em;color:var(--accent)">SCOPE</strong></span>
-    <span class="pbl-item"><span class="pbl-swatch" style="background:#D85A30"></span>Security</span>
-    <span class="pbl-item"><span class="pbl-swatch" style="background:#7F77DD"></span>Conflict</span>
-    <span class="pbl-item"><span class="pbl-swatch" style="background:#378ADD"></span>Peace</span>
-    <span class="pbl-item"><span class="pbl-swatch" style="background:#B07A1F"></span>Evidence</span>
+  <!-- SCOPE filter pills (added 2026-09-22). Click to show only that area; click several to combine; click again to clear. -->
+  <div class="tagline-block pub-filter">
+    <div class="tagline-label"><span class="scope-mark">SCOPE</span>Security, Conflict, &amp; Peace Evidence</div>
+    <div class="tagline-questions" role="group" aria-label="Filter publications by research area">
+      <button type="button" class="tq" data-cat="security" aria-pressed="false" style="--c:#D85A30">Security</button>
+      <button type="button" class="tq" data-cat="conflict" aria-pressed="false" style="--c:#7F77DD">Conflict</button>
+      <button type="button" class="tq" data-cat="peace" aria-pressed="false" style="--c:#378ADD">Peace</button>
+      <button type="button" class="tq" data-cat="evidence" aria-pressed="false" style="--c:#B07A1F">Evidence</button>
+    </div>
+    <div class="filter-status" aria-live="polite"><span id="filter-count">Select an area to filter.</span> <button type="button" id="filter-clear" hidden>Show all</button></div>
   </div>
 
   <!-- TAB 1: BOOKS & SPECIAL ISSUES -->
@@ -1669,6 +1704,70 @@ document.querySelectorAll('.pub-entry').forEach(entry => {
     this.classList.toggle('expanded');
   });
 });
+</script>
+<script>
+/* SCOPE filter: show publications tagged with ANY selected area (primary or also-relevant).
+   No selection = show everything. Year and section headings hide when they have nothing left to show. */
+(function () {
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.pub-filter .tq'));
+  var entries = Array.prototype.slice.call(document.querySelectorAll('.pub-entry'));
+  var countEl = document.getElementById('filter-count');
+  var clearEl = document.getElementById('filter-clear');
+  var selected = new Set();
+  var NAMES = {security:'Security', conflict:'Conflict', peace:'Peace', evidence:'Evidence'};
+
+  function catsOf(entry) {
+    return Array.prototype.map.call(entry.querySelectorAll('.pub-bucket'), function (b) {
+      var m = b.className.match(/pb-(\w+)/); return m ? m[1] : null;
+    });
+  }
+  var entryCats = entries.map(catsOf);
+
+  // Each heading governs the entries that follow it until the next heading of the same or higher level.
+  function block(el, stopSel) {
+    var out = [], n = el.nextElementSibling;
+    while (n && !n.matches(stopSel)) { out.push(n); n = n.nextElementSibling; }
+    return out;
+  }
+  var years = Array.prototype.slice.call(document.querySelectorAll('.pub-year'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.section-title'))
+    .filter(function (s) { return block(s, '.section-title').some(function (n) { return n.matches('.pub-entry'); }); });
+
+  function apply() {
+    var shown = 0;
+    entries.forEach(function (e, i) {
+      var show = selected.size === 0 || entryCats[i].some(function (c) { return selected.has(c); });
+      e.classList.toggle('is-filtered', !show);
+      if (show) shown++;
+    });
+    years.forEach(function (y) {
+      var any = block(y, '.pub-year, .section-title').some(function (n) { return n.matches('.pub-entry') && !n.classList.contains('is-filtered'); });
+      y.classList.toggle('is-filtered', !any);
+    });
+    sections.forEach(function (s) {
+      var any = block(s, '.section-title').some(function (n) { return n.matches('.pub-entry') && !n.classList.contains('is-filtered'); });
+      s.classList.toggle('is-filtered', !any);
+    });
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', selected.has(b.dataset.cat) ? 'true' : 'false'); });
+    if (selected.size === 0) {
+      countEl.textContent = 'Select an area to filter.';
+      clearEl.hidden = true;
+    } else {
+      var names = Array.from(selected).map(function (c) { return NAMES[c]; }).join(' or ');
+      countEl.textContent = 'Showing ' + shown + ' of ' + entries.length + ' tagged ' + names + '.';
+      clearEl.hidden = false;
+    }
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var c = b.dataset.cat;
+      if (selected.has(c)) selected.delete(c); else selected.add(c);
+      apply();
+    });
+  });
+  clearEl.addEventListener('click', function () { selected.clear(); apply(); });
+})();
 </script>
 </body>
 </html>
