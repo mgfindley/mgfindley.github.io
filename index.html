@@ -38,6 +38,16 @@
       color: var(--accent);
       margin-bottom: 10px;
     }
+    .hero .hero-text p.hero-question {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin: 14px 0 10px;
+    }
+    .hero .hero-text p.hero-question em { color: var(--accent); white-space: nowrap; }
     .tagline-block .scope-mark {
       display: inline-block;
       font-size: 1.15rem;
@@ -239,8 +249,10 @@
         The University of Texas at Austin
       </div>
 
-      <p style="font-family:var(--font-serif);font-size:1.1rem;line-height:1.55;color:var(--text);margin:4px 0 24px;">
-        My work turns security, conflict, and peace into questions of evidence, and asks how far that evidence travels: whether what worked in one place will work in the next. I answer those questions with field experiments, computational models, and fieldwork.
+      <!-- Hero question + lede: shortened (Version B, 2026-09-22) from the copy locked in communications/public-facing-strategy.md section 5 -->
+      <p class="hero-question">It worked there. <em>Will it work here?</em></p>
+      <p style="font-family:var(--font-serif);font-size:1.1rem;line-height:1.55;color:var(--text);margin:0 0 24px;">
+        That question decides billions a year in sanctions, aid, and post-conflict recovery, and it is usually answered by analogy. It runs both ways: what worked there may fail here, and what failed there may work here. I build the evidence, and test how far each finding generalizes.
       </p>
 
       <!-- SCOPE: Security, Conflict, & Peace Evidence research architecture (updated 2026-09-22; previous Pressure/Persuasion/Stabilization/Dynamics version preserved at git tag pre-scope-categories-2026-09-22) -->
